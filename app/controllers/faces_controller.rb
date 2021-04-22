@@ -1,0 +1,4 @@
+class FacesController < ApplicationController
+    
+
+end
