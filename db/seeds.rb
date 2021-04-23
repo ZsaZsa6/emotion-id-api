@@ -8,4 +8,4 @@
 # game1 = Game.create(username: "ronda")
 # game2 = Game.create(username: "Nathan")
 # game3 = Game.create(username: "Lillian")
-games =  Game.create([{username: 'ronda', id: 1}, {username: 'Nathan'}, {username: 'Lillian'}])
+games =  Game.create([{username: 'ronda'}, {username: 'Nathan'}, {username: 'Lillian'}])

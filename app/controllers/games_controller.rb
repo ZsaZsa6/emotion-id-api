@@ -2,7 +2,9 @@ class GamesController < ApplicationController
 
     def index
         games = Game.all
-        render json: games 
+        render json: games
+        #  include: 
+        # [levels: {only: [:game_id, :level_number, :id]}]
     end
 
     def create        
@@ -11,6 +13,8 @@ class GamesController < ApplicationController
 
     def show
         game = Game.find(params[:id])
+        render json: game, include:
+        [level: {only: [:game_id, :level_number, :id]}]
     end
 
     private
