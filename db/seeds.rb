@@ -8,4 +8,7 @@
 # game1 = Game.create(username: "ronda")
 # game2 = Game.create(username: "Nathan")
 # game3 = Game.create(username: "Lillian")
-games =  Game.create([{username: 'ronda'}, {username: 'Nathan'}, {username: 'Lillian'}])
+games = Game.create([{username: 'ronda'}, {username: 'Nathan'}, {username: 'Lillian'}])
+# Level.create(level_number: 1, game_id: 1)
+# Challenge.create(emotion_number: 1, face_answer_number: 1, level_id: 1)
+# Face.create()

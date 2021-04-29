@@ -7,14 +7,10 @@ class GamesController < ApplicationController
         # [levels: {only: [:game_id, :level_number, :id]}]
     end
 
-    def create        
-        game = Game.create(game_params)       
-    end
-
     def show
         game = Game.find(params[:id])
         render json: game, include:
-        [level: {only: [:game_id, :level_number, :id]}]
+        [:levels]
     end
 
     private

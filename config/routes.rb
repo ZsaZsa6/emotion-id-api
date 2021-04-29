@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :challenge_answers
   resources :faces
   resources :challenges
   resources :levels

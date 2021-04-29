@@ -10,11 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_21_160054) do
+ActiveRecord::Schema.define(version: 2021_04_29_200729) do
+
+  create_table "challenge_answers", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "challenges", force: :cascade do |t|
     t.integer "emotion_number"
-    t.integer "correct_answer_number"
+    t.integer "face_answer_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -23,6 +28,7 @@ ActiveRecord::Schema.define(version: 2021_04_21_160054) do
     t.string "image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "answer_number"
   end
 
   create_table "games", force: :cascade do |t|
