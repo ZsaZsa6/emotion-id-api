@@ -2,9 +2,9 @@ class GamesController < ApplicationController
 
     def index
         games = Game.all
-        render json: games
-        #  include: 
-        # [levels: {only: [:game_id, :level_number, :id]}]
+        render json: games,
+         include: 
+        [levels: {only: [:game_id, :level_number, :id]}]
     end
 
     def show
