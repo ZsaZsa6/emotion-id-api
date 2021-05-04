@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_29_225446) do
+ActiveRecord::Schema.define(version: 2021_05_04_003533) do
 
   create_table "challenge_answers", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2021_04_29_225446) do
     t.string "username"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "current_challenge_id"
   end
 
   create_table "levels", force: :cascade do |t|
