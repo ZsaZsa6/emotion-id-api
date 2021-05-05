@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :games
+  resources :games, param: :username
   resources :levels
   resources :challenges
   resources :faces

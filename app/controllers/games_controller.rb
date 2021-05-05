@@ -4,13 +4,13 @@ class GamesController < ApplicationController
         games = Game.all
         render json: games,
          include: 
-        [levels: {only: [:game_id, :level_number, :id]}]
+        [challenges: {only: [:game_id, :level_number, :id]}]
     end
 
     def show
-        game = Game.find(params[:id])
+        game = Game.find_by_username(params[:username])
         render json: game, include:
-        [:levels]
+        [:challenges]
     end
 
     private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_04_003533) do
+ActiveRecord::Schema.define(version: 2021_05_05_132230) do
 
   create_table "challenge_answers", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -22,12 +22,12 @@ ActiveRecord::Schema.define(version: 2021_05_04_003533) do
   end
 
   create_table "challenges", force: :cascade do |t|
-    t.integer "emotion_number"
-    t.integer "face_answer_number"
+    t.integer "correct_answer_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "level_id"
-    t.index ["level_id"], name: "index_challenges_on_level_id"
+    t.string "emotion_name"
+    t.integer "challenge_number"
+    t.integer "level_number"
   end
 
   create_table "faces", force: :cascade do |t|
@@ -46,17 +46,7 @@ ActiveRecord::Schema.define(version: 2021_05_04_003533) do
     t.integer "current_challenge_id"
   end
 
-  create_table "levels", force: :cascade do |t|
-    t.integer "level_number"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "game_id"
-    t.index ["game_id"], name: "index_levels_on_game_id"
-  end
-
   add_foreign_key "challenge_answers", "challenges"
   add_foreign_key "challenge_answers", "faces"
-  add_foreign_key "challenges", "levels"
   add_foreign_key "faces", "challenges"
-  add_foreign_key "levels", "games"
 end
