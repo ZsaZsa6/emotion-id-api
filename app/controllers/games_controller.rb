@@ -4,7 +4,7 @@ class GamesController < ApplicationController
         games = Game.all
         render json: games,
          include: 
-        [challenges: {only: [:game_id, :level_number, :id]}]
+        [:challenges]
     end
 
     def show
