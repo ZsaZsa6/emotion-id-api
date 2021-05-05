@@ -1,4 +1,3 @@
 class Challenge < ApplicationRecord
-    has_many :faces
-    
+    has_many :faces    
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_05_174820) do
+ActiveRecord::Schema.define(version: 2021_05_05_132230) do
 
   create_table "challenge_answers", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 2021_05_05_174820) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "answer_number"
+    t.integer "challenge_id"
+    t.index ["challenge_id"], name: "index_faces_on_challenge_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -46,4 +48,5 @@ ActiveRecord::Schema.define(version: 2021_05_05_174820) do
 
   add_foreign_key "challenge_answers", "challenges"
   add_foreign_key "challenge_answers", "faces"
+  add_foreign_key "faces", "challenges"
 end

@@ -1,7 +1,7 @@
 class FacesController < ApplicationController
     def create
         face = Face.create(face_params)
-        render json: face
+        # render json: face
     end
 
     private
