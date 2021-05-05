@@ -1,3 +1,5 @@
+require 'jsonapi-serializers'
+
 class GameSerializer
     include JSONAPI::Serializer
     attributes :id, :username, :current_challenge_id

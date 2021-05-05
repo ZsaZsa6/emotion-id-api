@@ -10588,3 +10588,1069 @@ Processing by GamesController#index as */*
 Completed 200 OK in 45ms (Views: 43.5ms | ActiveRecord: 1.4ms | Allocations: 4269)
 
 
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RemoveForeignKeyFromFaces (20210505171205)
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RemoveForeignKeyFromFaces (20210505171205)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RemoveForeignKeyFromFaces (20210505171205)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TEMPORARY TABLE "afaces" ("id" integer NOT NULL PRIMARY KEY, "image_url" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "answer_number" integer DEFAULT NULL, "challenge_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "tindex_afaces_on_challenge_id" ON "afaces" ("challenge_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[32mINSERT INTO "afaces" ("id","image_url","created_at","updated_at","answer_number","challenge_id")
+                     SELECT "id","image_url","created_at","updated_at","answer_number","challenge_id" FROM "faces"[0m
+  [1m[35m (1.3ms)[0m  [1m[35mDROP TABLE "faces"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "faces" ("id" integer NOT NULL PRIMARY KEY, "image_url" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "answer_number" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "faces" ("id","image_url","created_at","updated_at","answer_number")
+                     SELECT "id","image_url","created_at","updated_at","answer_number" FROM "afaces"[0m
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE "afaces"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210505171205"]]
+  [1m[35m (18.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/games" for ::1 at 2021-05-05 12:18:15 -0500
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:5:in `index'
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."game_id" = ?[0m  [["game_id", 1]]
+  ↳ app/controllers/games_controller.rb:5:in `index'
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."game_id" = ?[0m  [["game_id", 2]]
+  ↳ app/controllers/games_controller.rb:5:in `index'
+  [1m[36mChallenge Load (0.5ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."game_id" = ?[0m  [["game_id", 3]]
+  ↳ app/controllers/games_controller.rb:5:in `index'
+Completed 200 OK in 78ms (Views: 64.3ms | ActiveRecord: 4.0ms | Allocations: 17787)
+
+
+Started GET "/games/1" for ::1 at 2021-05-05 12:18:24 -0500
+Processing by GamesController#show as HTML
+  Parameters: {"username"=>"1"}
+  [1m[36mGame Load (0.7ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "1"], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:11:in `show'
+Completed 200 OK in 26ms (Views: 0.3ms | ActiveRecord: 0.7ms | Allocations: 1342)
+
+
+Started GET "/games" for ::1 at 2021-05-05 12:18:43 -0500
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:5:in `index'
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."game_id" = ?[0m  [["game_id", 1]]
+  ↳ app/controllers/games_controller.rb:5:in `index'
+  [1m[36mChallenge Load (0.7ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."game_id" = ?[0m  [["game_id", 2]]
+  ↳ app/controllers/games_controller.rb:5:in `index'
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."game_id" = ?[0m  [["game_id", 3]]
+  ↳ app/controllers/games_controller.rb:5:in `index'
+Completed 200 OK in 53ms (Views: 50.4ms | ActiveRecord: 1.6ms | Allocations: 4235)
+
+
+Started GET "/" for ::1 at 2021-05-05 12:18:50 -0500
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/cowenhome/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/cowenhome/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.6/lib/rails/templates/rails/welcome/index.html.erb (Duration: 36.5ms | Allocations: 315)
+Completed 200 OK in 65ms (Views: 55.0ms | ActiveRecord: 0.0ms | Allocations: 1586)
+
+
+Started GET "/games" for ::1 at 2021-05-05 12:18:53 -0500
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:5:in `index'
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."game_id" = ?[0m  [["game_id", 1]]
+  ↳ app/controllers/games_controller.rb:5:in `index'
+  [1m[36mChallenge Load (0.7ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."game_id" = ?[0m  [["game_id", 2]]
+  ↳ app/controllers/games_controller.rb:5:in `index'
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."game_id" = ?[0m  [["game_id", 3]]
+  ↳ app/controllers/games_controller.rb:5:in `index'
+Completed 200 OK in 21ms (Views: 17.9ms | ActiveRecord: 1.5ms | Allocations: 4216)
+
+
+Started GET "/games/Ronda" for ::1 at 2021-05-05 12:18:58 -0500
+Processing by GamesController#show as HTML
+  Parameters: {"username"=>"Ronda"}
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Ronda"], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:11:in `show'
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 645)
+
+
+Started GET "/games/Ronda" for ::1 at 2021-05-05 12:20:44 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GamesController#show as HTML
+  Parameters: {"username"=>"Ronda"}
+  [1m[36mGame Load (1.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Ronda"], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:11:in `show'
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "challenges"."id" FROM "challenges" WHERE "challenges"."game_id" = ?[0m  [["game_id", 1]]
+  ↳ app/controllers/games_controller.rb:12:in `show'
+Completed 500 Internal Server Error in 53ms (ActiveRecord: 4.7ms | Allocations: 8511)
+
+
+  
+NameError (GameSerializer cannot resolve a serializer class for 'challenge_answer'.  Attempted to find 'ChallengeAnswerSerializer'. Consider specifying the serializer directly through options[:serializer].):
+  
+app/controllers/games_controller.rb:12:in `show'
+Started GET "/games/Ronda" for ::1 at 2021-05-05 12:23:38 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GamesController#show as HTML
+  Parameters: {"username"=>"Ronda"}
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Ronda"], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:11:in `show'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "challenges"."id" FROM "challenges" WHERE "challenges"."game_id" = ?[0m  [["game_id", 1]]
+  ↳ app/controllers/games_controller.rb:12:in `show'
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "challenge_answers"."id" FROM "challenge_answers" WHERE "challenge_answers"."game_id" = ?[0m  [["game_id", 1]]
+  ↳ app/controllers/games_controller.rb:12:in `show'
+Completed 500 Internal Server Error in 84ms (ActiveRecord: 10.5ms | Allocations: 11065)
+
+
+  
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such column: challenge_answers.game_id):
+  
+app/controllers/games_controller.rb:12:in `show'
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RemoveGameIdFromChallenges (20210505173115)
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "achallenges" ("id" integer NOT NULL PRIMARY KEY, "correct_answer_number" integer DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "emotion_name" varchar DEFAULT NULL, "challenge_number" integer DEFAULT NULL, "level_number" integer DEFAULT NULL, "game_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenges_on_game_id" ON "achallenges" ("game_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "achallenges" ("id","correct_answer_number","created_at","updated_at","emotion_name","challenge_number","level_number","game_id")
+                     SELECT "id","correct_answer_number","created_at","updated_at","emotion_name","challenge_number","level_number","game_id" FROM "challenges"[0m
+  [1m[35m (1.5ms)[0m  [1m[35mDROP TABLE "challenges"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "challenges" ("id" integer NOT NULL PRIMARY KEY, "correct_answer_number" integer DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "emotion_name" varchar DEFAULT NULL, "challenge_number" integer DEFAULT NULL, "level_number" integer DEFAULT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "challenges" ("id","correct_answer_number","created_at","updated_at","emotion_name","challenge_number","level_number")
+                     SELECT "id","correct_answer_number","created_at","updated_at","emotion_name","challenge_number","level_number" FROM "achallenges"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "achallenges"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210505173115"]]
+  [1m[35m (18.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "challenge_answers"[0m
+  [1m[35m (23.2ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer, "face_id" integer)[0m
+  [1m[35m (15.0ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (19.3ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "challenges"[0m
+  [1m[35m (18.6ms)[0m  [1m[35mCREATE TABLE "challenges" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "correct_answer_number" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "emotion_name" varchar, "challenge_number" integer, "level_number" integer)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "faces"[0m
+  [1m[35m (14.1ms)[0m  [1m[35mCREATE TABLE "faces" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "image_url" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "answer_number" integer)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "games"[0m
+  [1m[35m (16.5ms)[0m  [1m[35mCREATE TABLE "games" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "current_challenge_id" integer)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "achallenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_face_id" ON "achallenge_answers" ("face_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_challenge_id" ON "achallenge_answers" ("challenge_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "achallenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "challenge_answers"[0m
+  [1m[35m (1.2ms)[0m  [1m[35mDROP TABLE "challenge_answers"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, CONSTRAINT "fk_rails_db2c26c3bd"
+FOREIGN KEY ("challenge_id")
+  REFERENCES "challenges" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "achallenge_answers"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "achallenge_answers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (12.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "achallenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_face_id" ON "achallenge_answers" ("face_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_challenge_id" ON "achallenge_answers" ("challenge_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "achallenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "challenge_answers"[0m
+  [1m[35m (1.5ms)[0m  [1m[35mDROP TABLE "challenge_answers"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, CONSTRAINT "fk_rails_db2c26c3bd"
+FOREIGN KEY ("challenge_id")
+  REFERENCES "challenges" ("id")
+, CONSTRAINT "fk_rails_b3efa68aa4"
+FOREIGN KEY ("face_id")
+  REFERENCES "faces" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "achallenge_answers"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "achallenge_answers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (14.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (20.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (13.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210505173115)[0m
+  [1m[35m (16.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210420185315),
+(20210420185706),
+(20210421160054),
+(20210429200012),
+(20210429200729),
+(20210429220841),
+(20210429225446),
+(20210504003533),
+(20210504173337),
+(20210505132230),
+(20210505154118),
+(20210505171205);
+
+[0m
+  [1m[35m (19.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-05-05 17:33:49.713289"], ["updated_at", "2021-05-05 17:33:49.713289"]]
+  [1m[35m (13.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "b447622d29d6323cd31ad98b9e0822e92dc6b4f8"], ["created_at", "2021-05-05 17:33:49.740709"], ["updated_at", "2021-05-05 17:33:49.740709"]]
+  [1m[35m (16.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "challenge_answers"[0m
+  [1m[35m (19.3ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer, "face_id" integer)[0m
+  [1m[35m (16.2ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (18.1ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "challenges"[0m
+  [1m[35m (16.9ms)[0m  [1m[35mCREATE TABLE "challenges" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "correct_answer_number" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "emotion_name" varchar, "challenge_number" integer, "level_number" integer)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "faces"[0m
+  [1m[35m (17.6ms)[0m  [1m[35mCREATE TABLE "faces" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "image_url" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "answer_number" integer)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "games"[0m
+  [1m[35m (15.4ms)[0m  [1m[35mCREATE TABLE "games" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "current_challenge_id" integer)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "achallenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_face_id" ON "achallenge_answers" ("face_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_challenge_id" ON "achallenge_answers" ("challenge_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "achallenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "challenge_answers"[0m
+  [1m[35m (2.0ms)[0m  [1m[35mDROP TABLE "challenge_answers"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, CONSTRAINT "fk_rails_db2c26c3bd"
+FOREIGN KEY ("challenge_id")
+  REFERENCES "challenges" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "achallenge_answers"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "achallenge_answers"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (21.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "achallenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_face_id" ON "achallenge_answers" ("face_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_challenge_id" ON "achallenge_answers" ("challenge_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "achallenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "challenge_answers"[0m
+  [1m[35m (1.4ms)[0m  [1m[35mDROP TABLE "challenge_answers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, CONSTRAINT "fk_rails_db2c26c3bd"
+FOREIGN KEY ("challenge_id")
+  REFERENCES "challenges" ("id")
+, CONSTRAINT "fk_rails_b3efa68aa4"
+FOREIGN KEY ("face_id")
+  REFERENCES "faces" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "achallenge_answers"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "achallenge_answers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (14.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (16.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (13.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210505173115)[0m
+  [1m[35m (17.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210420185315),
+(20210420185706),
+(20210421160054),
+(20210429200012),
+(20210429200729),
+(20210429220841),
+(20210429225446),
+(20210504003533),
+(20210504173337),
+(20210505132230),
+(20210505154118),
+(20210505171205);
+
+[0m
+  [1m[35m (19.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-05-05 17:33:50.141398"], ["updated_at", "2021-05-05 17:33:50.141398"]]
+  [1m[35m (12.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (1.0ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2021-05-05 17:33:50.166664"], ["key", "environment"]]
+  [1m[35m (13.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "b447622d29d6323cd31ad98b9e0822e92dc6b4f8"], ["created_at", "2021-05-05 17:33:50.190357"], ["updated_at", "2021-05-05 17:33:50.190357"]]
+  [1m[35m (20.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Create (1.0ms)[0m  [1m[32mINSERT INTO "challenges" ("correct_answer_number", "created_at", "updated_at", "emotion_name", "challenge_number", "level_number") VALUES (?, ?, ?, ?, ?, ?)[0m  [["correct_answer_number", 1], ["created_at", "2021-05-05 17:33:50.319718"], ["updated_at", "2021-05-05 17:33:50.319718"], ["emotion_name", "Sad"], ["challenge_number", 1], ["level_number", 1]]
+  [1m[35m (14.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFace Create (1.2ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "answer_number") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353439/EmotionID%20pics/Happy/pexels-anna-shvets-3845492_bynbxs.jpg"], ["created_at", "2021-05-05 17:33:50.355617"], ["updated_at", "2021-05-05 17:33:50.355617"], ["answer_number", 1]]
+  [1m[35m (13.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFace Create (1.1ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "answer_number") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618354383/EmotionID%20pics/Scared/pexels-tatiana-syrikova-3933087_b7s4n8.jpg"], ["created_at", "2021-05-05 17:33:50.377236"], ["updated_at", "2021-05-05 17:33:50.377236"], ["answer_number", 1]]
+  [1m[35m (16.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFace Create (1.3ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "answer_number") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353592/EmotionID%20pics/Sad/pexels-v%C3%AD%C3%A7k%C3%BD-%C3%B0e%C3%A7%C3%AB%C3%B1t-%C3%9F%C3%B6%C3%BD-1339417_tt01ym.jpg"], ["created_at", "2021-05-05 17:33:50.402259"], ["updated_at", "2021-05-05 17:33:50.402259"], ["answer_number", 1]]
+  [1m[35m (15.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.1ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFace Load (0.2ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChallengeAnswer Create (1.1ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("created_at", "updated_at", "challenge_id", "face_id") VALUES (?, ?, ?, ?)[0m  [["created_at", "2021-05-05 17:33:50.455528"], ["updated_at", "2021-05-05 17:33:50.455528"], ["challenge_id", 1], ["face_id", 1]]
+  [1m[35m (12.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "challenge_answers"[0m
+  [1m[35m (21.7ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer, "face_id" integer)[0m
+  [1m[35m (15.5ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (14.8ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "challenges"[0m
+  [1m[35m (15.8ms)[0m  [1m[35mCREATE TABLE "challenges" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "correct_answer_number" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "emotion_name" varchar, "challenge_number" integer, "level_number" integer)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "faces"[0m
+  [1m[35m (17.9ms)[0m  [1m[35mCREATE TABLE "faces" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "image_url" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "answer_number" integer)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "games"[0m
+  [1m[35m (14.1ms)[0m  [1m[35mCREATE TABLE "games" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "current_challenge_id" integer)[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "achallenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_face_id" ON "achallenge_answers" ("face_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_challenge_id" ON "achallenge_answers" ("challenge_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "achallenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "challenge_answers"[0m
+  [1m[35m (1.2ms)[0m  [1m[35mDROP TABLE "challenge_answers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, CONSTRAINT "fk_rails_db2c26c3bd"
+FOREIGN KEY ("challenge_id")
+  REFERENCES "challenges" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "achallenge_answers"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "achallenge_answers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (14.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "achallenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_face_id" ON "achallenge_answers" ("face_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_challenge_id" ON "achallenge_answers" ("challenge_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "achallenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "challenge_answers"[0m
+  [1m[35m (1.1ms)[0m  [1m[35mDROP TABLE "challenge_answers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, CONSTRAINT "fk_rails_db2c26c3bd"
+FOREIGN KEY ("challenge_id")
+  REFERENCES "challenges" ("id")
+, CONSTRAINT "fk_rails_b3efa68aa4"
+FOREIGN KEY ("face_id")
+  REFERENCES "faces" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "achallenge_answers"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "achallenge_answers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (18.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (13.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (14.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210505173115)[0m
+  [1m[35m (13.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210420185315),
+(20210420185706),
+(20210421160054),
+(20210429200012),
+(20210429200729),
+(20210429220841),
+(20210429225446),
+(20210504003533),
+(20210504173337),
+(20210505132230),
+(20210505154118),
+(20210505171205);
+
+[0m
+  [1m[35m (13.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-05-05 17:35:52.014279"], ["updated_at", "2021-05-05 17:35:52.014279"]]
+  [1m[35m (13.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "b447622d29d6323cd31ad98b9e0822e92dc6b4f8"], ["created_at", "2021-05-05 17:35:52.044379"], ["updated_at", "2021-05-05 17:35:52.044379"]]
+  [1m[35m (18.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "challenge_answers"[0m
+  [1m[35m (17.5ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer, "face_id" integer)[0m
+  [1m[35m (14.6ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (17.2ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "challenges"[0m
+  [1m[35m (23.4ms)[0m  [1m[35mCREATE TABLE "challenges" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "correct_answer_number" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "emotion_name" varchar, "challenge_number" integer, "level_number" integer)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "faces"[0m
+  [1m[35m (17.4ms)[0m  [1m[35mCREATE TABLE "faces" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "image_url" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "answer_number" integer)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "games"[0m
+  [1m[35m (18.4ms)[0m  [1m[35mCREATE TABLE "games" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "current_challenge_id" integer)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "achallenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_face_id" ON "achallenge_answers" ("face_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_challenge_id" ON "achallenge_answers" ("challenge_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "achallenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "challenge_answers"[0m
+  [1m[35m (1.2ms)[0m  [1m[35mDROP TABLE "challenge_answers"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, CONSTRAINT "fk_rails_db2c26c3bd"
+FOREIGN KEY ("challenge_id")
+  REFERENCES "challenges" ("id")
+)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "achallenge_answers"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "achallenge_answers"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (26.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TEMPORARY TABLE "achallenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_face_id" ON "achallenge_answers" ("face_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_challenge_id" ON "achallenge_answers" ("challenge_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "achallenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "challenge_answers"[0m
+  [1m[35m (1.3ms)[0m  [1m[35mDROP TABLE "challenge_answers"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, CONSTRAINT "fk_rails_db2c26c3bd"
+FOREIGN KEY ("challenge_id")
+  REFERENCES "challenges" ("id")
+, CONSTRAINT "fk_rails_b3efa68aa4"
+FOREIGN KEY ("face_id")
+  REFERENCES "faces" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "achallenge_answers"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "achallenge_answers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (22.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (14.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (17.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210505173115)[0m
+  [1m[35m (17.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210420185315),
+(20210420185706),
+(20210421160054),
+(20210429200012),
+(20210429200729),
+(20210429220841),
+(20210429225446),
+(20210504003533),
+(20210504173337),
+(20210505132230),
+(20210505154118),
+(20210505171205);
+
+[0m
+  [1m[35m (20.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-05-05 17:35:52.496258"], ["updated_at", "2021-05-05 17:35:52.496258"]]
+  [1m[35m (13.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (1.0ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2021-05-05 17:35:52.522395"], ["key", "environment"]]
+  [1m[35m (13.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "b447622d29d6323cd31ad98b9e0822e92dc6b4f8"], ["created_at", "2021-05-05 17:35:52.546289"], ["updated_at", "2021-05-05 17:35:52.546289"]]
+  [1m[35m (19.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.1ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.1ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.1ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Create (0.9ms)[0m  [1m[32mINSERT INTO "challenges" ("correct_answer_number", "created_at", "updated_at", "emotion_name", "challenge_number", "level_number") VALUES (?, ?, ?, ?, ?, ?)[0m  [["correct_answer_number", 1], ["created_at", "2021-05-05 17:35:52.657240"], ["updated_at", "2021-05-05 17:35:52.657240"], ["emotion_name", "Sad"], ["challenge_number", 1], ["level_number", 1]]
+  [1m[35m (16.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFace Create (0.9ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "answer_number") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353439/EmotionID%20pics/Happy/pexels-anna-shvets-3845492_bynbxs.jpg"], ["created_at", "2021-05-05 17:35:52.687069"], ["updated_at", "2021-05-05 17:35:52.687069"], ["answer_number", 1]]
+  [1m[35m (12.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFace Create (1.1ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "answer_number") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618354383/EmotionID%20pics/Scared/pexels-tatiana-syrikova-3933087_b7s4n8.jpg"], ["created_at", "2021-05-05 17:35:52.706328"], ["updated_at", "2021-05-05 17:35:52.706328"], ["answer_number", 1]]
+  [1m[35m (13.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFace Create (0.9ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "answer_number") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353592/EmotionID%20pics/Sad/pexels-v%C3%AD%C3%A7k%C3%BD-%C3%B0e%C3%A7%C3%AB%C3%B1t-%C3%9F%C3%B6%C3%BD-1339417_tt01ym.jpg"], ["created_at", "2021-05-05 17:35:52.728091"], ["updated_at", "2021-05-05 17:35:52.728091"], ["answer_number", 1]]
+  [1m[35m (13.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFace Load (0.1ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChallengeAnswer Create (1.2ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("created_at", "updated_at", "challenge_id", "face_id") VALUES (?, ?, ?, ?)[0m  [["created_at", "2021-05-05 17:35:52.772119"], ["updated_at", "2021-05-05 17:35:52.772119"], ["challenge_id", 1], ["face_id", 1]]
+  [1m[35m (16.5ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/games/Ronda" for ::1 at 2021-05-05 12:36:13 -0500
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GamesController#show as HTML
+  Parameters: {"username"=>"Ronda"}
+  [1m[36mGame Load (1.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Ronda"], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:11:in `show'
+Completed 200 OK in 49ms (Views: 0.3ms | ActiveRecord: 2.0ms | Allocations: 4133)
+
+
+Started GET "/games/Ronda" for ::1 at 2021-05-05 12:42:09 -0500
+Processing by GamesController#show as */*
+  Parameters: {"username"=>"Ronda"}
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Ronda"], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:11:in `show'
+Completed 200 OK in 15ms (Views: 0.6ms | ActiveRecord: 0.3ms | Allocations: 653)
+
+
+Started GET "/games" for ::1 at 2021-05-05 12:42:22 -0500
+Processing by GamesController#index as */*
+  [1m[36mGame Load (2.4ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:5:in `index'
+Completed 200 OK in 15ms (Views: 12.3ms | ActiveRecord: 2.4ms | Allocations: 826)
+
+
+Started GET "/games" for ::1 at 2021-05-05 12:43:15 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GamesController#index as */*
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:5:in `index'
+Completed 200 OK in 12ms (Views: 2.6ms | ActiveRecord: 1.0ms | Allocations: 2790)
+
+
+Started GET "/games" for ::1 at 2021-05-05 12:43:46 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+SyntaxError (/home/cowenhome/react_project/emotion-id-api/app/controllers/games_controller.rb:8: syntax error, unexpected end
+    end
+    ^~~
+/home/cowenhome/react_project/emotion-id-api/app/controllers/games_controller.rb:20: syntax error, unexpected end-of-input, expecting end):
+  
+app/controllers/games_controller.rb:8: syntax error, unexpected end
+app/controllers/games_controller.rb:20: syntax error, unexpected end-of-input, expecting end
+app/controllers/games_controller.rb:8: syntax error, unexpected end
+app/controllers/games_controller.rb:20: syntax error, unexpected end-of-input, expecting end
+Started GET "/games" for ::1 at 2021-05-05 12:43:57 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GamesController#index as */*
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:5:in `index'
+Completed 200 OK in 20ms (Views: 6.4ms | ActiveRecord: 6.5ms | Allocations: 2781)
+
+
+Started GET "/games" for ::1 at 2021-05-05 12:45:18 -0500
+Processing by GamesController#index as */*
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:5:in `index'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.3ms | Allocations: 791)
+
+
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RemoveGameIdFromChallenges (20210505174820)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TEMPORARY TABLE "achallenges" ("id" integer NOT NULL PRIMARY KEY, "correct_answer_number" integer DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "emotion_name" varchar DEFAULT NULL, "challenge_number" integer DEFAULT NULL, "level_number" integer DEFAULT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "achallenges" ("id","correct_answer_number","created_at","updated_at","emotion_name","challenge_number","level_number")
+                     SELECT "id","correct_answer_number","created_at","updated_at","emotion_name","challenge_number","level_number" FROM "challenges"[0m
+  [1m[35m (3.4ms)[0m  [1m[35mDROP TABLE "challenges"[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "challenges" ("id" integer NOT NULL PRIMARY KEY, "correct_answer_number" integer DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "emotion_name" varchar DEFAULT NULL, "challenge_number" integer DEFAULT NULL, "level_number" integer DEFAULT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "challenges" ("id","correct_answer_number","created_at","updated_at","emotion_name","challenge_number","level_number")
+                     SELECT "id","correct_answer_number","created_at","updated_at","emotion_name","challenge_number","level_number" FROM "achallenges"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "achallenges"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210505174820"]]
+  [1m[35m (19.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/games" for ::1 at 2021-05-05 12:50:35 -0500
+  [1m[35m (9.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GamesController#index as */*
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:5:in `index'
+Completed 200 OK in 12ms (Views: 3.2ms | ActiveRecord: 0.8ms | Allocations: 3317)
+
+
+Started GET "/games" for ::1 at 2021-05-05 12:52:22 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GamesController#index as */*
+Completed 500 Internal Server Error in 234ms (ActiveRecord: 0.0ms | Allocations: 37285)
+
+
+  
+NoMethodError (undefined method `GameSerializer' for #<GamesController:0x00007fecf80104e0>
+Did you mean?  games_url):
+  
+app/controllers/games_controller.rb:5:in `index'
+Started GET "/games" for ::1 at 2021-05-05 12:52:27 -0500
+Processing by GamesController#index as */*
+Completed 500 Internal Server Error in 155ms (ActiveRecord: 0.0ms | Allocations: 35726)
+
+
+  
+NoMethodError (undefined method `GameSerializer' for #<GamesController:0x00007fece4017c18>
+Did you mean?  games_url):
+  
+app/controllers/games_controller.rb:5:in `index'
+Started GET "/games" for ::1 at 2021-05-05 12:56:41 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GamesController#index as */*
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:5:in `index'
+Completed 200 OK in 20ms (Views: 9.2ms | ActiveRecord: 5.1ms | Allocations: 2941)
+
+
+Started GET "/" for ::1 at 2021-05-05 12:56:59 -0500
+Processing by Rails::WelcomeController#index as */*
+  Rendering /home/cowenhome/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/cowenhome/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.6/lib/rails/templates/rails/welcome/index.html.erb (Duration: 23.6ms | Allocations: 315)
+Completed 200 OK in 34ms (Views: 28.5ms | ActiveRecord: 0.0ms | Allocations: 1624)
+
+
+Started GET "/games" for ::1 at 2021-05-05 12:57:07 -0500
+Processing by GamesController#index as */*
+  [1m[36mGame Load (0.6ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:5:in `index'
+Completed 200 OK in 5ms (Views: 3.0ms | ActiveRecord: 0.6ms | Allocations: 860)
+
+
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "challenge_answers"[0m
+  [1m[35m (14.9ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer, "face_id" integer)[0m
+  [1m[35m (13.8ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (13.9ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "challenges"[0m
+  [1m[35m (16.1ms)[0m  [1m[35mCREATE TABLE "challenges" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "correct_answer_number" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "emotion_name" varchar, "challenge_number" integer, "level_number" integer)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "faces"[0m
+  [1m[35m (13.7ms)[0m  [1m[35mCREATE TABLE "faces" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "image_url" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "answer_number" integer)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "games"[0m
+  [1m[35m (13.5ms)[0m  [1m[35mCREATE TABLE "games" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "current_challenge_id" integer)[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "achallenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_face_id" ON "achallenge_answers" ("face_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_challenge_id" ON "achallenge_answers" ("challenge_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "achallenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "challenge_answers"[0m
+  [1m[35m (1.1ms)[0m  [1m[35mDROP TABLE "challenge_answers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, CONSTRAINT "fk_rails_db2c26c3bd"
+FOREIGN KEY ("challenge_id")
+  REFERENCES "challenges" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "achallenge_answers"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "achallenge_answers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (12.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "achallenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_face_id" ON "achallenge_answers" ("face_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_challenge_id" ON "achallenge_answers" ("challenge_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "achallenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "challenge_answers"[0m
+  [1m[35m (1.1ms)[0m  [1m[35mDROP TABLE "challenge_answers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, CONSTRAINT "fk_rails_db2c26c3bd"
+FOREIGN KEY ("challenge_id")
+  REFERENCES "challenges" ("id")
+, CONSTRAINT "fk_rails_b3efa68aa4"
+FOREIGN KEY ("face_id")
+  REFERENCES "faces" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "achallenge_answers"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "achallenge_answers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (13.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (13.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (13.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210505174820)[0m
+  [1m[35m (13.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210420185315),
+(20210420185706),
+(20210421160054),
+(20210429200012),
+(20210429200729),
+(20210429220841),
+(20210429225446),
+(20210504003533),
+(20210504173337),
+(20210505132230),
+(20210505154118),
+(20210505171205);
+
+[0m
+  [1m[35m (14.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-05-05 17:57:37.400379"], ["updated_at", "2021-05-05 17:57:37.400379"]]
+  [1m[35m (12.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "9fe3210b0e82a5baccc0119fe837dc9cf0874af5"], ["created_at", "2021-05-05 17:57:37.427136"], ["updated_at", "2021-05-05 17:57:37.427136"]]
+  [1m[35m (12.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "challenge_answers"[0m
+  [1m[35m (16.1ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer, "face_id" integer)[0m
+  [1m[35m (14.0ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (13.1ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "challenges"[0m
+  [1m[35m (12.9ms)[0m  [1m[35mCREATE TABLE "challenges" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "correct_answer_number" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "emotion_name" varchar, "challenge_number" integer, "level_number" integer)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "faces"[0m
+  [1m[35m (18.4ms)[0m  [1m[35mCREATE TABLE "faces" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "image_url" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "answer_number" integer)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "games"[0m
+  [1m[35m (14.7ms)[0m  [1m[35mCREATE TABLE "games" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "current_challenge_id" integer)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "achallenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_face_id" ON "achallenge_answers" ("face_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_challenge_id" ON "achallenge_answers" ("challenge_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "achallenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "challenge_answers"[0m
+  [1m[35m (1.4ms)[0m  [1m[35mDROP TABLE "challenge_answers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, CONSTRAINT "fk_rails_db2c26c3bd"
+FOREIGN KEY ("challenge_id")
+  REFERENCES "challenges" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "achallenge_answers"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "achallenge_answers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (12.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TEMPORARY TABLE "achallenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_face_id" ON "achallenge_answers" ("face_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_challenge_id" ON "achallenge_answers" ("challenge_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "achallenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "challenge_answers"[0m
+  [1m[35m (1.1ms)[0m  [1m[35mDROP TABLE "challenge_answers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, CONSTRAINT "fk_rails_db2c26c3bd"
+FOREIGN KEY ("challenge_id")
+  REFERENCES "challenges" ("id")
+, CONSTRAINT "fk_rails_b3efa68aa4"
+FOREIGN KEY ("face_id")
+  REFERENCES "faces" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("id","created_at","updated_at","challenge_id","face_id")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id" FROM "achallenge_answers"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "achallenge_answers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (13.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (13.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (14.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210505174820)[0m
+  [1m[35m (13.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210420185315),
+(20210420185706),
+(20210421160054),
+(20210429200012),
+(20210429200729),
+(20210429220841),
+(20210429225446),
+(20210504003533),
+(20210504173337),
+(20210505132230),
+(20210505154118),
+(20210505171205);
+
+[0m
+  [1m[35m (13.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-05-05 17:57:37.763975"], ["updated_at", "2021-05-05 17:57:37.763975"]]
+  [1m[35m (12.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.9ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2021-05-05 17:57:37.788339"], ["key", "environment"]]
+  [1m[35m (12.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "9fe3210b0e82a5baccc0119fe837dc9cf0874af5"], ["created_at", "2021-05-05 17:57:37.812996"], ["updated_at", "2021-05-05 17:57:37.812996"]]
+  [1m[35m (18.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.1ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.1ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.1ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Create (1.2ms)[0m  [1m[32mINSERT INTO "challenges" ("correct_answer_number", "created_at", "updated_at", "emotion_name", "challenge_number", "level_number") VALUES (?, ?, ?, ?, ?, ?)[0m  [["correct_answer_number", 1], ["created_at", "2021-05-05 17:57:37.918999"], ["updated_at", "2021-05-05 17:57:37.918999"], ["emotion_name", "Sad"], ["challenge_number", 1], ["level_number", 1]]
+  [1m[35m (13.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFace Create (0.9ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "answer_number") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353439/EmotionID%20pics/Happy/pexels-anna-shvets-3845492_bynbxs.jpg"], ["created_at", "2021-05-05 17:57:37.947447"], ["updated_at", "2021-05-05 17:57:37.947447"], ["answer_number", 1]]
+  [1m[35m (13.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFace Create (1.0ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "answer_number") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618354383/EmotionID%20pics/Scared/pexels-tatiana-syrikova-3933087_b7s4n8.jpg"], ["created_at", "2021-05-05 17:57:37.968664"], ["updated_at", "2021-05-05 17:57:37.968664"], ["answer_number", 1]]
+  [1m[35m (12.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFace Create (1.2ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "answer_number") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353592/EmotionID%20pics/Sad/pexels-v%C3%AD%C3%A7k%C3%BD-%C3%B0e%C3%A7%C3%AB%C3%B1t-%C3%9F%C3%B6%C3%BD-1339417_tt01ym.jpg"], ["created_at", "2021-05-05 17:57:37.988707"], ["updated_at", "2021-05-05 17:57:37.988707"], ["answer_number", 1]]
+  [1m[35m (13.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFace Load (0.1ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mChallengeAnswer Create (1.4ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("created_at", "updated_at", "challenge_id", "face_id") VALUES (?, ?, ?, ?)[0m  [["created_at", "2021-05-05 17:57:38.032426"], ["updated_at", "2021-05-05 17:57:38.032426"], ["challenge_id", 1], ["face_id", 1]]
+  [1m[35m (12.6ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/games" for ::1 at 2021-05-05 12:57:52 -0500
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GamesController#index as */*
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:5:in `index'
+Completed 200 OK in 32ms (Views: 9.3ms | ActiveRecord: 0.9ms | Allocations: 3316)
+
+
+Started GET "/games/Ronda" for ::1 at 2021-05-05 12:58:08 -0500
+Processing by GamesController#show as */*
+  Parameters: {"username"=>"Ronda"}
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Ronda"], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:11:in `show'
+Completed 200 OK in 44ms (Views: 0.3ms | ActiveRecord: 0.4ms | Allocations: 1627)
+
+
+Started GET "/" for ::1 at 2021-05-05 13:02:34 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Rails::WelcomeController#index as */*
+  Rendering /home/cowenhome/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/cowenhome/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.6/lib/rails/templates/rails/welcome/index.html.erb (Duration: 21.2ms | Allocations: 315)
+Completed 200 OK in 30ms (Views: 24.1ms | ActiveRecord: 0.0ms | Allocations: 1785)
+
+
+Started GET "/games" for ::1 at 2021-05-05 13:02:38 -0500
+Processing by GamesController#index as */*
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:5:in `index'
+Completed 200 OK in 13ms (Views: 3.1ms | ActiveRecord: 2.1ms | Allocations: 2776)
+
+
+Started GET "/games" for ::1 at 2021-05-05 13:03:17 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GamesController#index as */*
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 0.0ms | Allocations: 2641)
+
+
+  
+NoMethodError (undefined method `serialize' for GameSerializer:Class
+Did you mean?  serializer_for):
+  
+app/controllers/games_controller.rb:5:in `index'
+Started GET "/games" for ::1 at 2021-05-05 13:03:22 -0500
+Processing by GamesController#index as */*
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms | Allocations: 915)
+
+
+  
+NoMethodError (undefined method `serialize' for GameSerializer:Class
+Did you mean?  serializer_for):
+  
+app/controllers/games_controller.rb:5:in `index'
+Started GET "/games" for ::1 at 2021-05-05 13:03:47 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GamesController#index as */*
+Completed 500 Internal Server Error in 166ms (ActiveRecord: 0.0ms | Allocations: 37367)
+
+
+  
+NoMethodError (undefined method `GameSerializer' for #<GamesController:0x00007fffbfac2a58>
+Did you mean?  games_url):
+  
+app/controllers/games_controller.rb:5:in `index'
+Started GET "/games" for ::1 at 2021-05-05 13:04:14 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GamesController#index as */*
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:5:in `index'
+Completed 200 OK in 24ms (Views: 16.6ms | ActiveRecord: 2.3ms | Allocations: 2929)
+
+
+Started GET "/games" for ::1 at 2021-05-05 13:16:43 -0500
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GamesController#index as */*
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 0.0ms | Allocations: 2825)
+
+
+  
+NoMethodError (undefined method `serialize' for JSONAPI::Serializer:Module):
+  
+app/controllers/games_controller.rb:5:in `index'
+Started GET "/games" for ::1 at 2021-05-05 13:17:05 -0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GamesController#index as */*
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.0ms | Allocations: 2243)
+
+
+  
+NoMethodError (undefined method `serialize' for JSONAPI::Serializer:Module):
+  
+app/controllers/games_controller.rb:5:in `index'
+Started GET "/games" for ::1 at 2021-05-05 13:17:43 -0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GamesController#index as */*
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:5:in `index'
+Completed 200 OK in 15ms (Views: 0.2ms | ActiveRecord: 1.6ms | Allocations: 2689)
+
+
+Started GET "/games" for ::1 at 2021-05-05 13:17:51 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GamesController#index as */*
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:5:in `index'
+Completed 200 OK in 20ms (Views: 11.7ms | ActiveRecord: 1.3ms | Allocations: 2781)
+
+
+Started GET "/games" for ::1 at 2021-05-05 13:18:50 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GamesController#index as */*
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:5:in `index'
+Completed 200 OK in 25ms (Views: 6.6ms | ActiveRecord: 1.1ms | Allocations: 2591)
+
+
+Started GET "/games" for ::1 at 2021-05-05 13:20:21 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (0.6ms)[0m  [1m[34mSELECT "games".* FROM "games" LIMIT ?[0m  [["LIMIT", 11]]
+  ↳ app/controllers/games_controller.rb:6:in `index'
+  [1m[36mCACHE Game Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" LIMIT ?[0m  [["LIMIT", 11]]
+  ↳ app/controllers/games_controller.rb:6:in `index'
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" ORDER BY "games"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ (byebug):1:in `index'
+  [1m[36mCACHE Game Load (0.1ms)[0m  [1m[34mSELECT "games".* FROM "games" LIMIT ?[0m  [["LIMIT", 11]]
+  ↳ app/controllers/games_controller.rb:6:in `index'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_05_154118) do
+ActiveRecord::Schema.define(version: 2021_05_05_174820) do
 
   create_table "challenge_answers", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -28,8 +28,6 @@ ActiveRecord::Schema.define(version: 2021_05_05_154118) do
     t.string "emotion_name"
     t.integer "challenge_number"
     t.integer "level_number"
-    t.integer "game_id"
-    t.index ["game_id"], name: "index_challenges_on_game_id"
   end
 
   create_table "faces", force: :cascade do |t|
@@ -37,8 +35,6 @@ ActiveRecord::Schema.define(version: 2021_05_05_154118) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "answer_number"
-    t.integer "challenge_id"
-    t.index ["challenge_id"], name: "index_faces_on_challenge_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -50,6 +46,4 @@ ActiveRecord::Schema.define(version: 2021_05_05_154118) do
 
   add_foreign_key "challenge_answers", "challenges"
   add_foreign_key "challenge_answers", "faces"
-  add_foreign_key "challenges", "games"
-  add_foreign_key "faces", "challenges"
 end

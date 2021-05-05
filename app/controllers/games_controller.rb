@@ -2,15 +2,15 @@ class GamesController < ApplicationController
 
     def index
         games = Game.all
-        render json: games,
-         include: 
-        [:challenges]
+        byebug
+        render json: games
+        #  include: 
+        # [:challenges]
     end
 
     def show
         game = Game.find_by_username(params[:username])
-        render json: game, include:
-        [:challenges]
+        render json: GameSerializer.new(game, include: [:challenges])
     end
 
     private
