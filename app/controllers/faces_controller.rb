@@ -1,6 +1,8 @@
 class FacesController < ApplicationController
+    # All = []
     def create
-        face = Face.create(face_params)
+        
+        face = Face.create[(face_params)]
         # render json: face
     end
 

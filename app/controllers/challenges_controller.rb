@@ -3,6 +3,11 @@ class ChallengesController < ApplicationController
         challenge = Challenge.create(challenge_params)
         render json: challenge
     end
+    def index
+        challenges = Challenge.all
+        render json: challenges,
+        include: [:faces]
+    end
     def show
         challenge = Challenge.find(params[:id])
         render json: challenge,
