@@ -1,5 +1,5 @@
 class FacesController < ApplicationController
-    # All = []
+  
     def create
         
         face = Face.create[(face_params)]
@@ -8,6 +8,6 @@ class FacesController < ApplicationController
 
     private
     def face_params
-        params.require(:face).permit(:image_url, :answer_number, :challenge_id )
+        params.require(:face).permit(:image_url, :challenge_id )
     end
 end

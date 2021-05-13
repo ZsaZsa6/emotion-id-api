@@ -1,7 +1,13 @@
 class ChallengeAnswersController < ApplicationController
+    
 
     def create
         challenge_answer = ChallengeAnswer.create(challenge_answer_params)
+        if face_id == challenge.correct_answer_number : correct = true || correct = false
+        # render json: challenge_answer
+    end
+    def show
+        challenge_answer = ChallengeAnswer.find(params[:id])
         render json: challenge_answer
     end
 
