@@ -2,9 +2,11 @@ class ChallengeAnswersController < ApplicationController
     
 
     def create
-        challenge_answer = ChallengeAnswer.create(challenge_answer_params)
-        if face_id == challenge.correct_answer_number : correct = true || correct = false
-        # render json: challenge_answer
+        game = Game.find_by_username(params[:game_username])
+        challenge_answer = game.challenge_answers.build(challenge_answer_params)
+        challenge_answer.save
+        
+        render json: challenge_answer
     end
     def show
         challenge_answer = ChallengeAnswer.find(params[:id])
@@ -13,6 +15,6 @@ class ChallengeAnswersController < ApplicationController
 
     private 
     def challenge_answer_params
-        params.require(:challenge_answer).permit(:face_id, :challenge_id, :game_id)
+        params.require(:challenge_answer).permit(:face_id, :challenge_id)
     end
 end

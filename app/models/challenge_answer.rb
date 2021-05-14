@@ -4,12 +4,17 @@ class ChallengeAnswer < ApplicationRecord
     belongs_to :game, counter_cache: true
 
 
-    # before_save :is_correct
+    before_save :is_correct
 
-    scope :percent_correct, -> { where ()}
-    # def is_correct
+    # scope :correct, -> { where ()}
 
-    # end
-         
+    def is_correct
+        if face_id == challenge.correct_answer_number
+            self.correct = true 
+        else 
+            self.correct = false
+    end
+end
+        #  add challenges_answers_count to games table
     
 end
