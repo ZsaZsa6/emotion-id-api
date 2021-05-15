@@ -6,7 +6,7 @@ class ChallengeAnswersController < ApplicationController
         challenge_answer = game.challenge_answers.build(challenge_answer_params)
         challenge_answer.save
         
-        render json: challenge_answer
+        render json: challenge_answer 
     end
     def show
         challenge_answer = ChallengeAnswer.find(params[:id])

@@ -15,6 +15,6 @@ class ChallengeAnswer < ApplicationRecord
             self.correct = false
     end
 end
-        #  add challenges_answers_count to games table
+    
     
 end
