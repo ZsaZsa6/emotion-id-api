@@ -5,17 +5,20 @@ class ChallengeAnswer < ApplicationRecord
 
 
     before_save :is_correct
-    
+    after_commit :advance_challenge
 
-    # scope :correct, -> { where ()}
-
+   
     def is_correct
         if face_id == challenge.correct_answer_number
             self.correct = true 
         else 
             self.correct = false
+        end
     end
-end
-    
+
+    def advance_challenge
+        challenge_id = challenge.id += 1
+        game.current_challenge_id = game.current_challenge.id += 1
+    end
     
 end
