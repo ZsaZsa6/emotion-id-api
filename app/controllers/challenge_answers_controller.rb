@@ -9,6 +9,7 @@ class ChallengeAnswersController < ApplicationController
         render json: challenge_answer 
     end
     def show
+        game = Game.find_by_username(params[:game_username])
         challenge_answer = ChallengeAnswer.find(params[:id])
         render json: challenge_answer
     end

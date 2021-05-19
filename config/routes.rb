@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :games, param: :username do
-    resources :challenge_answers, only: :create
+    resources :challenge_answers, only: [:create, :show ]
+
   end
   resources :challenges
   resources :faces

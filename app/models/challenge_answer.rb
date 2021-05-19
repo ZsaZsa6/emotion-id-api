@@ -5,6 +5,7 @@ class ChallengeAnswer < ApplicationRecord
 
 
     before_save :is_correct
+    
 
     # scope :correct, -> { where ()}
 
