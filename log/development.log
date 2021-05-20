@@ -38153,3 +38153,1334 @@ Processing by GamesController#show as HTML
 Completed 200 OK in 5ms (Views: 0.5ms | ActiveRecord: 0.7ms | Allocations: 911)
 
 
+Started GET "/" for ::1 at 2021-05-19 20:07:57 -0500
+  [1m[35m (7.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/cowenhome/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.6/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/cowenhome/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.6/lib/rails/templates/rails/welcome/index.html.erb (Duration: 21.8ms | Allocations: 315)
+Completed 200 OK in 43ms (Views: 29.3ms | ActiveRecord: 0.0ms | Allocations: 1592)
+
+
+Started GET "/games" for ::1 at 2021-05-19 20:08:09 -0500
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (0.5ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:6:in `index'
+Completed 200 OK in 186ms (Views: 109.3ms | ActiveRecord: 2.0ms | Allocations: 7770)
+
+
+Started GET "/games" for ::1 at 2021-05-19 20:08:19 -0500
+Processing by GamesController#index as */*
+  [1m[36mGame Load (22.2ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:6:in `index'
+Completed 200 OK in 83ms (Views: 60.4ms | ActiveRecord: 22.2ms | Allocations: 1230)
+
+
+Started GET "/games" for ::1 at 2021-05-19 20:23:08 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GamesController#index as */*
+  [1m[36mGame Load (0.5ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:6:in `index'
+Completed 200 OK in 98ms (Views: 54.3ms | ActiveRecord: 0.5ms | Allocations: 6577)
+
+
+Started GET "/challenges/1" for ::1 at 2021-05-19 20:23:12 -0500
+Processing by ChallengesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mChallenge Load (0.5ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/challenges_controller.rb:12:in `show'
+  [1m[36mFace Load (1.8ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."challenge_id" = ?[0m  [["challenge_id", 1]]
+  ↳ app/controllers/challenges_controller.rb:13:in `show'
+Completed 200 OK in 137ms (Views: 82.8ms | ActiveRecord: 7.3ms | Allocations: 14182)
+
+
+Started POST "/games/Lillian/challenge_answers" for ::1 at 2021-05-19 20:23:31 -0500
+Processing by ChallengeAnswersController#create as JSON
+  Parameters: {"challenge_answer"=>{"challenge_id"=>1, "face_id"=>"6"}, "game_username"=>"Lillian"}
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Lillian"], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:5:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mFace Load (0.2ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallengeAnswer Create (1.6ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("created_at", "updated_at", "challenge_id", "face_id", "game_id", "correct") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2021-05-20 01:23:31.795057"], ["updated_at", "2021-05-20 01:23:31.795057"], ["challenge_id", 1], ["face_id", 6], ["game_id", 3], ["correct", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mGame Update All (0.4ms)[0m  [1m[33mUPDATE "games" SET "challenge_answers_count" = COALESCE("challenge_answers_count", 0) + ? WHERE "games"."id" = ?[0m  [["challenge_answers_count", 1], ["id", 3]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (20.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mChallenge Load (0.4ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mGame Update (1.7ms)[0m  [1m[33mUPDATE "games" SET "current_challenge_id" = ?, "updated_at" = ? WHERE "games"."id" = ?[0m  [["current_challenge_id", 2], ["updated_at", "2021-05-20 01:23:31.843534"], ["id", 3]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[35m (26.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+Completed 200 OK in 123ms (Views: 1.1ms | ActiveRecord: 53.0ms | Allocations: 17339)
+
+
+Started GET "/games" for ::1 at 2021-05-19 20:23:42 -0500
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:6:in `index'
+Completed 200 OK in 16ms (Views: 12.5ms | ActiveRecord: 0.4ms | Allocations: 1210)
+
+
+Started GET "/games" for ::1 at 2021-05-19 20:47:19 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GamesController#index as */*
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:6:in `index'
+Completed 200 OK in 67ms (Views: 54.2ms | ActiveRecord: 0.4ms | Allocations: 6566)
+
+
+Started GET "/challenges/1" for ::1 at 2021-05-19 20:49:58 -0500
+Processing by ChallengesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mChallenge Load (0.4ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/challenges_controller.rb:12:in `show'
+  [1m[36mFace Load (0.3ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."challenge_id" = ?[0m  [["challenge_id", 1]]
+  ↳ app/controllers/challenges_controller.rb:13:in `show'
+Completed 200 OK in 26ms (Views: 12.3ms | ActiveRecord: 0.7ms | Allocations: 11152)
+
+
+Started POST "/games/Ronda/challenge_answers" for ::1 at 2021-05-19 20:50:15 -0500
+  
+SyntaxError (/home/cowenhome/react_project/emotion-id-api/app/controllers/challenge_answers_controller.rb:9: syntax error, unexpected '\n', expecting =>
+/home/cowenhome/react_project/emotion-id-api/app/controllers/challenge_answers_controller.rb:21: syntax error, unexpected end-of-input, expecting end):
+  
+app/controllers/challenge_answers_controller.rb:9: syntax error, unexpected '\n', expecting =>
+app/controllers/challenge_answers_controller.rb:21: syntax error, unexpected end-of-input, expecting end
+app/controllers/challenge_answers_controller.rb:9: syntax error, unexpected '\n', expecting =>
+app/controllers/challenge_answers_controller.rb:21: syntax error, unexpected end-of-input, expecting end
+Started GET "/games" for ::1 at 2021-05-19 20:54:57 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GamesController#index as */*
+  [1m[36mGame Load (0.7ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:6:in `index'
+Completed 200 OK in 46ms (Views: 27.8ms | ActiveRecord: 12.4ms | Allocations: 6885)
+
+
+Started GET "/games" for ::1 at 2021-05-19 20:55:07 -0500
+Processing by GamesController#index as HTML
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:6:in `index'
+Completed 200 OK in 25ms (Views: 23.3ms | ActiveRecord: 0.3ms | Allocations: 1210)
+
+
+Started GET "/challenges/1" for ::1 at 2021-05-19 20:55:20 -0500
+Processing by ChallengesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mChallenge Load (1.0ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/challenges_controller.rb:12:in `show'
+  [1m[36mFace Load (3.6ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."challenge_id" = ?[0m  [["challenge_id", 1]]
+  ↳ app/controllers/challenges_controller.rb:13:in `show'
+Completed 200 OK in 108ms (Views: 58.3ms | ActiveRecord: 24.7ms | Allocations: 11777)
+
+
+Started POST "/games/ZsaZsa/challenge_answers" for ::1 at 2021-05-19 20:55:39 -0500
+Processing by ChallengeAnswersController#create as JSON
+  Parameters: {"challenge_answer"=>{"challenge_id"=>1, "face_id"=>"3"}, "game_username"=>"ZsaZsa"}
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "ZsaZsa"], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:5:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mFace Load (0.2ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallengeAnswer Create (2.9ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("created_at", "updated_at", "challenge_id", "face_id", "game_id", "correct") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2021-05-20 01:55:39.724465"], ["updated_at", "2021-05-20 01:55:39.724465"], ["challenge_id", 1], ["face_id", 3], ["game_id", 2], ["correct", 0]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mGame Update All (0.3ms)[0m  [1m[33mUPDATE "games" SET "challenge_answers_count" = COALESCE("challenge_answers_count", 0) + ? WHERE "games"."id" = ?[0m  [["challenge_answers_count", 1], ["id", 2]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (15.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mGame Update (1.2ms)[0m  [1m[33mUPDATE "games" SET "current_challenge_id" = ?, "updated_at" = ? WHERE "games"."id" = ?[0m  [["current_challenge_id", 2], ["updated_at", "2021-05-20 01:55:39.765138"], ["id", 2]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[35m (13.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+Completed 200 OK in 100ms (Views: 0.5ms | ActiveRecord: 36.5ms | Allocations: 17659)
+
+
+Started POST "/games/ZsaZsa/challenge_answers" for ::1 at 2021-05-19 20:55:52 -0500
+Processing by ChallengeAnswersController#create as JSON
+  Parameters: {"challenge_answer"=>{"challenge_id"=>1, "face_id"=>"1"}, "game_username"=>"ZsaZsa"}
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "ZsaZsa"], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:5:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mFace Load (0.2ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallengeAnswer Create (2.4ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("created_at", "updated_at", "challenge_id", "face_id", "game_id", "correct") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2021-05-20 01:55:52.061139"], ["updated_at", "2021-05-20 01:55:52.061139"], ["challenge_id", 1], ["face_id", 1], ["game_id", 2], ["correct", 0]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mGame Update All (0.4ms)[0m  [1m[33mUPDATE "games" SET "challenge_answers_count" = COALESCE("challenge_answers_count", 0) + ? WHERE "games"."id" = ?[0m  [["challenge_answers_count", 1], ["id", 2]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (33.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (0.9ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mGame Update (3.1ms)[0m  [1m[33mUPDATE "games" SET "current_challenge_id" = ?, "updated_at" = ? WHERE "games"."id" = ?[0m  [["current_challenge_id", 3], ["updated_at", "2021-05-20 01:55:52.113072"], ["id", 2]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[35m (24.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+Completed 200 OK in 101ms (Views: 0.7ms | ActiveRecord: 66.4ms | Allocations: 11096)
+
+
+Started GET "/games" for ::1 at 2021-05-19 20:57:28 -0500
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GamesController#index as */*
+  [1m[36mGame Load (0.5ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:6:in `index'
+Completed 200 OK in 27ms (Views: 18.0ms | ActiveRecord: 2.6ms | Allocations: 6887)
+
+
+Started GET "/challenges/2" for ::1 at 2021-05-19 20:57:38 -0500
+Processing by ChallengesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/challenges_controller.rb:12:in `show'
+  [1m[36mFace Load (0.6ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."challenge_id" = ?[0m  [["challenge_id", 2]]
+  ↳ app/controllers/challenges_controller.rb:13:in `show'
+Completed 200 OK in 101ms (Views: 49.3ms | ActiveRecord: 4.9ms | Allocations: 11778)
+
+
+Started POST "/games/Lillian/challenge_answers" for ::1 at 2021-05-19 20:58:51 -0500
+Processing by ChallengeAnswersController#create as JSON
+  Parameters: {"challenge_answer"=>{"challenge_id"=>2, "face_id"=>"5"}, "game_username"=>"Lillian"}
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Lillian"], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:5:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallenge Load (0.7ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mFace Load (0.3ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallengeAnswer Create (1.6ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("created_at", "updated_at", "challenge_id", "face_id", "game_id", "correct") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2021-05-20 01:58:51.864096"], ["updated_at", "2021-05-20 01:58:51.864096"], ["challenge_id", 2], ["face_id", 5], ["game_id", 3], ["correct", 0]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mGame Update All (0.3ms)[0m  [1m[33mUPDATE "games" SET "challenge_answers_count" = COALESCE("challenge_answers_count", 0) + ? WHERE "games"."id" = ?[0m  [["challenge_answers_count", 1], ["id", 3]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (31.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mGame Update (1.2ms)[0m  [1m[33mUPDATE "games" SET "current_challenge_id" = ?, "updated_at" = ? WHERE "games"."id" = ?[0m  [["current_challenge_id", 3], ["updated_at", "2021-05-20 01:58:52.014543"], ["id", 3]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[35m (18.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+Completed 200 OK in 291ms (Views: 0.5ms | ActiveRecord: 68.1ms | Allocations: 18308)
+
+
+Started POST "/games/Lillian/challenge_answers" for ::1 at 2021-05-19 20:59:41 -0500
+Processing by ChallengeAnswersController#create as JSON
+  Parameters: {"challenge_answer"=>{"challenge_id"=>2, "face_id"=>"2"}, "game_username"=>"Lillian"}
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Lillian"], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:5:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mFace Load (0.1ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallengeAnswer Create (3.2ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("created_at", "updated_at", "challenge_id", "face_id", "game_id", "correct") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2021-05-20 01:59:41.308445"], ["updated_at", "2021-05-20 01:59:41.308445"], ["challenge_id", 2], ["face_id", 2], ["game_id", 3], ["correct", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mGame Update All (0.4ms)[0m  [1m[33mUPDATE "games" SET "challenge_answers_count" = COALESCE("challenge_answers_count", 0) + ? WHERE "games"."id" = ?[0m  [["challenge_answers_count", 1], ["id", 3]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (21.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mGame Update (1.1ms)[0m  [1m[33mUPDATE "games" SET "current_challenge_id" = ?, "updated_at" = ? WHERE "games"."id" = ?[0m  [["current_challenge_id", 4], ["updated_at", "2021-05-20 01:59:41.367641"], ["id", 3]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[35m (26.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+Completed 200 OK in 102ms (Views: 0.5ms | ActiveRecord: 53.2ms | Allocations: 11700)
+
+
+Started GET "/challenges/2" for ::1 at 2021-05-19 21:06:07 -0500
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ChallengesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mChallenge Load (2.4ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/challenges_controller.rb:12:in `show'
+  [1m[36mFace Load (0.7ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."challenge_id" = ?[0m  [["challenge_id", 2]]
+  ↳ app/controllers/challenges_controller.rb:13:in `show'
+Completed 200 OK in 187ms (Views: 91.6ms | ActiveRecord: 3.1ms | Allocations: 11503)
+
+
+Started POST "/games/Lillian/challenge_answers" for ::1 at 2021-05-19 21:06:13 -0500
+  
+SyntaxError (/home/cowenhome/react_project/emotion-id-api/app/controllers/challenge_answers_controller.rb:10: syntax error, unexpected [, expecting do or '{' or '('
+        include [:game]
+                ^):
+  
+app/controllers/challenge_answers_controller.rb:10: syntax error, unexpected [, expecting do or '{' or '('
+app/controllers/challenge_answers_controller.rb:10: syntax error, unexpected [, expecting do or '{' or '('
+Started GET "/games/Lillian" for ::1 at 2021-05-19 21:06:44 -0500
+Processing by GamesController#show as */*
+  Parameters: {"username"=>"Lillian"}
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Lillian"], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:11:in `show'
+Completed 200 OK in 77ms (Views: 2.1ms | ActiveRecord: 0.4ms | Allocations: 5926)
+
+
+Started GET "/games/ZsaZsa" for ::1 at 2021-05-19 21:06:57 -0500
+Processing by GamesController#show as */*
+  Parameters: {"username"=>"ZsaZsa"}
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "ZsaZsa"], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:11:in `show'
+Completed 200 OK in 2ms (Views: 0.7ms | ActiveRecord: 0.2ms | Allocations: 740)
+
+
+Started GET "/challenges/3" for ::1 at 2021-05-19 21:07:00 -0500
+Processing by ChallengesController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mChallenge Load (0.4ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/challenges_controller.rb:12:in `show'
+  [1m[36mFace Load (0.3ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."challenge_id" = ?[0m  [["challenge_id", 3]]
+  ↳ app/controllers/challenges_controller.rb:13:in `show'
+Completed 200 OK in 20ms (Views: 5.0ms | ActiveRecord: 0.7ms | Allocations: 2491)
+
+
+Started POST "/games/ZsaZsa/challenge_answers" for ::1 at 2021-05-19 21:07:11 -0500
+  
+SyntaxError (/home/cowenhome/react_project/emotion-id-api/app/controllers/challenge_answers_controller.rb:10: syntax error, unexpected [, expecting do or '{' or '('
+        include [:game]
+                ^):
+  
+app/controllers/challenge_answers_controller.rb:10: syntax error, unexpected [, expecting do or '{' or '('
+app/controllers/challenge_answers_controller.rb:10: syntax error, unexpected [, expecting do or '{' or '('
+Started GET "/games/Ronda" for ::1 at 2021-05-19 21:09:18 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GamesController#show as */*
+  Parameters: {"username"=>"Ronda"}
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Ronda"], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:11:in `show'
+Completed 200 OK in 40ms (Views: 0.7ms | ActiveRecord: 2.7ms | Allocations: 6567)
+
+
+Started GET "/challenges/1" for ::1 at 2021-05-19 21:09:25 -0500
+Processing by ChallengesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/challenges_controller.rb:12:in `show'
+  [1m[36mFace Load (0.4ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."challenge_id" = ?[0m  [["challenge_id", 1]]
+  ↳ app/controllers/challenges_controller.rb:13:in `show'
+Completed 200 OK in 70ms (Views: 35.1ms | ActiveRecord: 8.6ms | Allocations: 11782)
+
+
+Started POST "/games/Ronda/challenge_answers" for ::1 at 2021-05-19 21:09:32 -0500
+Processing by ChallengeAnswersController#create as JSON
+  Parameters: {"challenge_answer"=>{"challenge_id"=>1, "face_id"=>"6"}, "game_username"=>"Ronda"}
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Ronda"], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:5:in `create'
+  [1m[35m (0.7ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mFace Load (0.3ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallengeAnswer Create (2.3ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("created_at", "updated_at", "challenge_id", "face_id", "game_id", "correct") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2021-05-20 02:09:32.140056"], ["updated_at", "2021-05-20 02:09:32.140056"], ["challenge_id", 1], ["face_id", 6], ["game_id", 1], ["correct", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mGame Update All (0.4ms)[0m  [1m[33mUPDATE "games" SET "challenge_answers_count" = COALESCE("challenge_answers_count", 0) + ? WHERE "games"."id" = ?[0m  [["challenge_answers_count", 1], ["id", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (29.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mChallenge Load (1.4ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mGame Update (1.7ms)[0m  [1m[33mUPDATE "games" SET "current_challenge_id" = ?, "updated_at" = ? WHERE "games"."id" = ?[0m  [["current_challenge_id", 2], ["updated_at", "2021-05-20 02:09:32.204706"], ["id", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[35m (31.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+Completed 200 OK in 188ms (Views: 8.7ms | ActiveRecord: 72.6ms | Allocations: 19292)
+
+
+Started GET "/challenges/1" for ::1 at 2021-05-19 21:15:07 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ChallengesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/challenges_controller.rb:12:in `show'
+  [1m[36mFace Load (0.4ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."challenge_id" = ?[0m  [["challenge_id", 1]]
+  ↳ app/controllers/challenges_controller.rb:13:in `show'
+Completed 200 OK in 9ms (Views: 5.8ms | ActiveRecord: 0.7ms | Allocations: 2526)
+
+
+Started GET "/games/Ronda" for ::1 at 2021-05-19 21:15:22 -0500
+Processing by GamesController#show as */*
+  Parameters: {"username"=>"Ronda"}
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Ronda"], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:11:in `show'
+Completed 200 OK in 3ms (Views: 0.6ms | ActiveRecord: 0.4ms | Allocations: 757)
+
+
+Started GET "/challenges/2" for ::1 at 2021-05-19 21:15:26 -0500
+Processing by ChallengesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mChallenge Load (0.4ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/challenges_controller.rb:12:in `show'
+  [1m[36mFace Load (0.3ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."challenge_id" = ?[0m  [["challenge_id", 2]]
+  ↳ app/controllers/challenges_controller.rb:13:in `show'
+Completed 200 OK in 10ms (Views: 3.9ms | ActiveRecord: 0.6ms | Allocations: 2491)
+
+
+Started POST "/games/Ronda/challenge_answers" for ::1 at 2021-05-19 21:15:34 -0500
+Processing by ChallengeAnswersController#create as JSON
+  Parameters: {"challenge_answer"=>{"challenge_id"=>2, "face_id"=>"7"}, "game_username"=>"Ronda"}
+  [1m[36mGame Load (0.7ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Ronda"], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:5:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mFace Load (0.3ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallengeAnswer Create (4.8ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("created_at", "updated_at", "challenge_id", "face_id", "game_id", "correct") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2021-05-20 02:15:35.018773"], ["updated_at", "2021-05-20 02:15:35.018773"], ["challenge_id", 2], ["face_id", 7], ["game_id", 1], ["correct", 0]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mGame Update All (0.4ms)[0m  [1m[33mUPDATE "games" SET "challenge_answers_count" = COALESCE("challenge_answers_count", 0) + ? WHERE "games"."id" = ?[0m  [["challenge_answers_count", 1], ["id", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (32.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mGame Update (2.9ms)[0m  [1m[33mUPDATE "games" SET "current_challenge_id" = ?, "updated_at" = ? WHERE "games"."id" = ?[0m  [["current_challenge_id", 3], ["updated_at", "2021-05-20 02:15:35.103154"], ["id", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[35m (22.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+Completed 200 OK in 156ms (Views: 0.6ms | ActiveRecord: 65.6ms | Allocations: 12561)
+
+
+Started GET "/challenges/2" for ::1 at 2021-05-19 21:35:34 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by ChallengesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mChallenge Load (0.5ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/challenges_controller.rb:12:in `show'
+  [1m[36mFace Load (0.7ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."challenge_id" = ?[0m  [["challenge_id", 2]]
+  ↳ app/controllers/challenges_controller.rb:13:in `show'
+Completed 200 OK in 29ms (Views: 23.8ms | ActiveRecord: 1.2ms | Allocations: 2526)
+
+
+Started POST "/games/Ronda/challenge_answers" for ::1 at 2021-05-19 21:35:41 -0500
+Processing by ChallengeAnswersController#create as JSON
+  Parameters: {"challenge_answer"=>{"challenge_id"=>2, "face_id"=>"7"}, "game_username"=>"Ronda"}
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Ronda"], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:5:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mFace Load (0.7ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallengeAnswer Create (5.7ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("created_at", "updated_at", "challenge_id", "face_id", "game_id", "correct") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2021-05-20 02:35:41.392049"], ["updated_at", "2021-05-20 02:35:41.392049"], ["challenge_id", 2], ["face_id", 7], ["game_id", 1], ["correct", 0]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mGame Update All (0.8ms)[0m  [1m[33mUPDATE "games" SET "challenge_answers_count" = COALESCE("challenge_answers_count", 0) + ? WHERE "games"."id" = ?[0m  [["challenge_answers_count", 1], ["id", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (31.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mChallenge Load (0.4ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mGame Update (3.0ms)[0m  [1m[33mUPDATE "games" SET "current_challenge_id" = ?, "updated_at" = ? WHERE "games"."id" = ?[0m  [["current_challenge_id", 4], ["updated_at", "2021-05-20 02:35:41.495906"], ["id", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[35m (24.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+Completed 200 OK in 274ms (Views: 13.6ms | ActiveRecord: 67.9ms | Allocations: 15262)
+
+
+Started GET "/challenges/2" for ::1 at 2021-05-19 21:37:04 -0500
+Processing by ChallengesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/challenges_controller.rb:12:in `show'
+  [1m[36mFace Load (0.5ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."challenge_id" = ?[0m  [["challenge_id", 2]]
+  ↳ app/controllers/challenges_controller.rb:13:in `show'
+Completed 200 OK in 9ms (Views: 6.5ms | ActiveRecord: 0.8ms | Allocations: 2491)
+
+
+Started POST "/games/Ronda/challenge_answers" for ::1 at 2021-05-19 21:37:09 -0500
+Processing by ChallengeAnswersController#create as JSON
+  Parameters: {"challenge_answer"=>{"challenge_id"=>2, "face_id"=>"7"}, "game_username"=>"Ronda"}
+  [1m[36mGame Load (0.2ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Ronda"], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:5:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mFace Load (0.1ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallengeAnswer Create (4.0ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("created_at", "updated_at", "challenge_id", "face_id", "game_id", "correct") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2021-05-20 02:37:09.981776"], ["updated_at", "2021-05-20 02:37:09.981776"], ["challenge_id", 2], ["face_id", 7], ["game_id", 1], ["correct", 0]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mGame Update All (0.9ms)[0m  [1m[33mUPDATE "games" SET "challenge_answers_count" = COALESCE("challenge_answers_count", 0) + ? WHERE "games"."id" = ?[0m  [["challenge_answers_count", 1], ["id", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (24.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mGame Update (1.8ms)[0m  [1m[33mUPDATE "games" SET "current_challenge_id" = ?, "updated_at" = ? WHERE "games"."id" = ?[0m  [["current_challenge_id", 5], ["updated_at", "2021-05-20 02:37:10.060756"], ["id", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[35m (25.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+Completed 200 OK in 124ms (Views: 0.9ms | ActiveRecord: 58.0ms | Allocations: 11958)
+
+
+Started GET "/challenges/2" for ::1 at 2021-05-19 21:37:45 -0500
+Processing by ChallengesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/challenges_controller.rb:12:in `show'
+  [1m[36mFace Load (0.3ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."challenge_id" = ?[0m  [["challenge_id", 2]]
+  ↳ app/controllers/challenges_controller.rb:13:in `show'
+Completed 200 OK in 9ms (Views: 6.0ms | ActiveRecord: 0.6ms | Allocations: 2491)
+
+
+Started POST "/games/Ronda/challenge_answers" for ::1 at 2021-05-19 21:37:51 -0500
+Processing by ChallengeAnswersController#create as JSON
+  Parameters: {"challenge_answer"=>{"challenge_id"=>2, "face_id"=>"7"}, "game_username"=>"Ronda"}
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Ronda"], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:5:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallenge Load (0.5ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mFace Load (0.2ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallengeAnswer Create (1.9ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("created_at", "updated_at", "challenge_id", "face_id", "game_id", "correct") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2021-05-20 02:37:51.582164"], ["updated_at", "2021-05-20 02:37:51.582164"], ["challenge_id", 2], ["face_id", 7], ["game_id", 1], ["correct", 0]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mGame Update All (2.0ms)[0m  [1m[33mUPDATE "games" SET "challenge_answers_count" = COALESCE("challenge_answers_count", 0) + ? WHERE "games"."id" = ?[0m  [["challenge_answers_count", 1], ["id", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (22.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mChallenge Load (0.4ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mGame Update (1.9ms)[0m  [1m[33mUPDATE "games" SET "current_challenge_id" = ?, "updated_at" = ? WHERE "games"."id" = ?[0m  [["current_challenge_id", 6], ["updated_at", "2021-05-20 02:37:51.633375"], ["id", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[35m (16.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+Completed 200 OK in 118ms (Views: 1.3ms | ActiveRecord: 45.7ms | Allocations: 11207)
+
+
+Started GET "/games" for ::1 at 2021-05-19 21:41:01 -0500
+Processing by GamesController#index as */*
+  [1m[36mGame Load (0.6ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:6:in `index'
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.6ms | Allocations: 1230)
+
+
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "challenge_answers"[0m
+  [1m[35m (23.5ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer, "face_id" integer, "game_id" integer, "correct" boolean)[0m
+  [1m[35m (18.5ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (17.7ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (16.7ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_game_id" ON "challenge_answers" ("game_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "challenges"[0m
+  [1m[35m (18.4ms)[0m  [1m[35mCREATE TABLE "challenges" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "correct_answer_number" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "emotion_name" varchar, "challenge_number" integer, "level_number" integer)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "faces"[0m
+  [1m[35m (17.8ms)[0m  [1m[35mCREATE TABLE "faces" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "image_url" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer)[0m
+  [1m[35m (17.5ms)[0m  [1m[35mCREATE  INDEX "index_faces_on_challenge_id" ON "faces" ("challenge_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "games"[0m
+  [1m[35m (17.4ms)[0m  [1m[35mCREATE TABLE "games" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "current_challenge_id" integer, "challenge_answers_count" integer)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TEMPORARY TABLE "achallenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, "game_id" integer DEFAULT NULL, "correct" boolean DEFAULT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_game_id" ON "achallenge_answers" ("game_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_face_id" ON "achallenge_answers" ("face_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_challenge_id" ON "achallenge_answers" ("challenge_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "achallenge_answers" ("id","created_at","updated_at","challenge_id","face_id","game_id","correct")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id","game_id","correct" FROM "challenge_answers"[0m
+  [1m[35m (2.1ms)[0m  [1m[35mDROP TABLE "challenge_answers"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, "game_id" integer DEFAULT NULL, "correct" boolean DEFAULT NULL, CONSTRAINT "fk_rails_db2c26c3bd"
+FOREIGN KEY ("challenge_id")
+  REFERENCES "challenges" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_game_id" ON "challenge_answers" ("game_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("id","created_at","updated_at","challenge_id","face_id","game_id","correct")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id","game_id","correct" FROM "achallenge_answers"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "achallenge_answers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (23.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TEMPORARY TABLE "achallenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, "game_id" integer DEFAULT NULL, "correct" boolean DEFAULT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_game_id" ON "achallenge_answers" ("game_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_face_id" ON "achallenge_answers" ("face_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_challenge_id" ON "achallenge_answers" ("challenge_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[32mINSERT INTO "achallenge_answers" ("id","created_at","updated_at","challenge_id","face_id","game_id","correct")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id","game_id","correct" FROM "challenge_answers"[0m
+  [1m[35m (5.5ms)[0m  [1m[35mDROP TABLE "challenge_answers"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, "game_id" integer DEFAULT NULL, "correct" boolean DEFAULT NULL, CONSTRAINT "fk_rails_db2c26c3bd"
+FOREIGN KEY ("challenge_id")
+  REFERENCES "challenges" ("id")
+, CONSTRAINT "fk_rails_b3efa68aa4"
+FOREIGN KEY ("face_id")
+  REFERENCES "faces" ("id")
+)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_game_id" ON "challenge_answers" ("game_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("id","created_at","updated_at","challenge_id","face_id","game_id","correct")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id","game_id","correct" FROM "achallenge_answers"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "achallenge_answers"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (25.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TEMPORARY TABLE "achallenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, "game_id" integer DEFAULT NULL, "correct" boolean DEFAULT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_game_id" ON "achallenge_answers" ("game_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_face_id" ON "achallenge_answers" ("face_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_challenge_id" ON "achallenge_answers" ("challenge_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "achallenge_answers" ("id","created_at","updated_at","challenge_id","face_id","game_id","correct")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id","game_id","correct" FROM "challenge_answers"[0m
+  [1m[35m (3.9ms)[0m  [1m[35mDROP TABLE "challenge_answers"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, "game_id" integer DEFAULT NULL, "correct" boolean DEFAULT NULL, CONSTRAINT "fk_rails_b3efa68aa4"
+FOREIGN KEY ("face_id")
+  REFERENCES "faces" ("id")
+, CONSTRAINT "fk_rails_db2c26c3bd"
+FOREIGN KEY ("challenge_id")
+  REFERENCES "challenges" ("id")
+, CONSTRAINT "fk_rails_a5bae7c716"
+FOREIGN KEY ("game_id")
+  REFERENCES "games" ("id")
+)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_game_id" ON "challenge_answers" ("game_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("id","created_at","updated_at","challenge_id","face_id","game_id","correct")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id","game_id","correct" FROM "achallenge_answers"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "achallenge_answers"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (29.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "afaces" ("id" integer NOT NULL PRIMARY KEY, "image_url" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE  INDEX "tindex_afaces_on_challenge_id" ON "afaces" ("challenge_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "afaces" ("id","image_url","created_at","updated_at","challenge_id")
+                     SELECT "id","image_url","created_at","updated_at","challenge_id" FROM "faces"[0m
+  [1m[35m (4.8ms)[0m  [1m[35mDROP TABLE "faces"[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "faces" ("id" integer NOT NULL PRIMARY KEY, "image_url" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, CONSTRAINT "fk_rails_12340b730c"
+FOREIGN KEY ("challenge_id")
+  REFERENCES "challenges" ("id")
+)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE  INDEX "index_faces_on_challenge_id" ON "faces" ("challenge_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[32mINSERT INTO "faces" ("id","image_url","created_at","updated_at","challenge_id")
+                     SELECT "id","image_url","created_at","updated_at","challenge_id" FROM "afaces"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE "afaces"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (17.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (20.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (22.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210514021456)[0m
+  [1m[35m (22.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210420185315),
+(20210420185706),
+(20210421160054),
+(20210429200012),
+(20210429200729),
+(20210429220841),
+(20210429225446),
+(20210504003533),
+(20210504173337),
+(20210505132230),
+(20210512161111),
+(20210512163442),
+(20210512170901),
+(20210512190133),
+(20210512190615);
+
+[0m
+  [1m[35m (27.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (2.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-05-20 02:41:46.760050"], ["updated_at", "2021-05-20 02:41:46.760050"]]
+  [1m[35m (25.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (2.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "10f8dca9e4bab42fbb0830fd3d9d7c4f3fd31853"], ["created_at", "2021-05-20 02:41:46.820769"], ["updated_at", "2021-05-20 02:41:46.820769"]]
+  [1m[35m (22.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "challenge_answers"[0m
+  [1m[35m (20.7ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer, "face_id" integer, "game_id" integer, "correct" boolean)[0m
+  [1m[35m (22.5ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (27.3ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (19.9ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_game_id" ON "challenge_answers" ("game_id")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "challenges"[0m
+  [1m[35m (20.6ms)[0m  [1m[35mCREATE TABLE "challenges" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "correct_answer_number" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "emotion_name" varchar, "challenge_number" integer, "level_number" integer)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "faces"[0m
+  [1m[35m (20.4ms)[0m  [1m[35mCREATE TABLE "faces" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "image_url" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer)[0m
+  [1m[35m (28.1ms)[0m  [1m[35mCREATE  INDEX "index_faces_on_challenge_id" ON "faces" ("challenge_id")[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "games"[0m
+  [1m[35m (20.2ms)[0m  [1m[35mCREATE TABLE "games" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "current_challenge_id" integer, "challenge_answers_count" integer)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TEMPORARY TABLE "achallenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, "game_id" integer DEFAULT NULL, "correct" boolean DEFAULT NULL)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_game_id" ON "achallenge_answers" ("game_id")[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_face_id" ON "achallenge_answers" ("face_id")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_challenge_id" ON "achallenge_answers" ("challenge_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "achallenge_answers" ("id","created_at","updated_at","challenge_id","face_id","game_id","correct")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id","game_id","correct" FROM "challenge_answers"[0m
+  [1m[35m (3.2ms)[0m  [1m[35mDROP TABLE "challenge_answers"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, "game_id" integer DEFAULT NULL, "correct" boolean DEFAULT NULL, CONSTRAINT "fk_rails_db2c26c3bd"
+FOREIGN KEY ("challenge_id")
+  REFERENCES "challenges" ("id")
+)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_game_id" ON "challenge_answers" ("game_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("id","created_at","updated_at","challenge_id","face_id","game_id","correct")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id","game_id","correct" FROM "achallenge_answers"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "achallenge_answers"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (19.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TEMPORARY TABLE "achallenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, "game_id" integer DEFAULT NULL, "correct" boolean DEFAULT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_game_id" ON "achallenge_answers" ("game_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_face_id" ON "achallenge_answers" ("face_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_challenge_id" ON "achallenge_answers" ("challenge_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "achallenge_answers" ("id","created_at","updated_at","challenge_id","face_id","game_id","correct")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id","game_id","correct" FROM "challenge_answers"[0m
+  [1m[35m (4.5ms)[0m  [1m[35mDROP TABLE "challenge_answers"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, "game_id" integer DEFAULT NULL, "correct" boolean DEFAULT NULL, CONSTRAINT "fk_rails_db2c26c3bd"
+FOREIGN KEY ("challenge_id")
+  REFERENCES "challenges" ("id")
+, CONSTRAINT "fk_rails_b3efa68aa4"
+FOREIGN KEY ("face_id")
+  REFERENCES "faces" ("id")
+)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_game_id" ON "challenge_answers" ("game_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("id","created_at","updated_at","challenge_id","face_id","game_id","correct")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id","game_id","correct" FROM "achallenge_answers"[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE "achallenge_answers"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (23.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TEMPORARY TABLE "achallenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, "game_id" integer DEFAULT NULL, "correct" boolean DEFAULT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_game_id" ON "achallenge_answers" ("game_id")[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_face_id" ON "achallenge_answers" ("face_id")[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE  INDEX "tindex_achallenge_answers_on_challenge_id" ON "achallenge_answers" ("challenge_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "achallenge_answers" ("id","created_at","updated_at","challenge_id","face_id","game_id","correct")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id","game_id","correct" FROM "challenge_answers"[0m
+  [1m[35m (5.8ms)[0m  [1m[35mDROP TABLE "challenge_answers"[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "challenge_answers" ("id" integer NOT NULL PRIMARY KEY, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, "face_id" integer DEFAULT NULL, "game_id" integer DEFAULT NULL, "correct" boolean DEFAULT NULL, CONSTRAINT "fk_rails_b3efa68aa4"
+FOREIGN KEY ("face_id")
+  REFERENCES "faces" ("id")
+, CONSTRAINT "fk_rails_db2c26c3bd"
+FOREIGN KEY ("challenge_id")
+  REFERENCES "challenges" ("id")
+, CONSTRAINT "fk_rails_a5bae7c716"
+FOREIGN KEY ("game_id")
+  REFERENCES "games" ("id")
+)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_challenge_id" ON "challenge_answers" ("challenge_id")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_face_id" ON "challenge_answers" ("face_id")[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE  INDEX "index_challenge_answers_on_game_id" ON "challenge_answers" ("game_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("id","created_at","updated_at","challenge_id","face_id","game_id","correct")
+                     SELECT "id","created_at","updated_at","challenge_id","face_id","game_id","correct" FROM "achallenge_answers"[0m
+  [1m[35m (3.0ms)[0m  [1m[35mDROP TABLE "achallenge_answers"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (16.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.6ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TEMPORARY TABLE "afaces" ("id" integer NOT NULL PRIMARY KEY, "image_url" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "tindex_afaces_on_challenge_id" ON "afaces" ("challenge_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "afaces" ("id","image_url","created_at","updated_at","challenge_id")
+                     SELECT "id","image_url","created_at","updated_at","challenge_id" FROM "faces"[0m
+  [1m[35m (2.6ms)[0m  [1m[35mDROP TABLE "faces"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "faces" ("id" integer NOT NULL PRIMARY KEY, "image_url" varchar DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "challenge_id" integer DEFAULT NULL, CONSTRAINT "fk_rails_12340b730c"
+FOREIGN KEY ("challenge_id")
+  REFERENCES "challenges" ("id")
+)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_faces_on_challenge_id" ON "faces" ("challenge_id")[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "faces" ("id","image_url","created_at","updated_at","challenge_id")
+                     SELECT "id","image_url","created_at","updated_at","challenge_id" FROM "afaces"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "afaces"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (16.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (24.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (30.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210514021456)[0m
+  [1m[35m (25.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210420185315),
+(20210420185706),
+(20210421160054),
+(20210429200012),
+(20210429200729),
+(20210429220841),
+(20210429225446),
+(20210504003533),
+(20210504173337),
+(20210505132230),
+(20210512161111),
+(20210512163442),
+(20210512170901),
+(20210512190133),
+(20210512190615);
+
+[0m
+  [1m[35m (22.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (2.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-05-20 02:41:47.888521"], ["updated_at", "2021-05-20 02:41:47.888521"]]
+  [1m[35m (19.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (3.7ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2021-05-20 02:41:47.932013"], ["key", "environment"]]
+  [1m[35m (19.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (2.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "10f8dca9e4bab42fbb0830fd3d9d7c4f3fd31853"], ["created_at", "2021-05-20 02:41:47.990178"], ["updated_at", "2021-05-20 02:41:47.990178"]]
+  [1m[35m (20.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (1.6ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (2.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (1.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.4ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Create (3.0ms)[0m  [1m[32mINSERT INTO "challenges" ("correct_answer_number", "created_at", "updated_at", "emotion_name", "challenge_number", "level_number") VALUES (?, ?, ?, ?, ?, ?)[0m  [["correct_answer_number", 6], ["created_at", "2021-05-20 02:41:48.269716"], ["updated_at", "2021-05-20 02:41:48.269716"], ["emotion_name", "Sad"], ["challenge_number", 1], ["level_number", 1]]
+  [1m[35m (23.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Create (13.7ms)[0m  [1m[32mINSERT INTO "challenges" ("correct_answer_number", "created_at", "updated_at", "emotion_name", "challenge_number", "level_number") VALUES (?, ?, ?, ?, ?, ?)[0m  [["correct_answer_number", 2], ["created_at", "2021-05-20 02:41:48.377433"], ["updated_at", "2021-05-20 02:41:48.377433"], ["emotion_name", "Happy"], ["challenge_number", 2], ["level_number", 1]]
+  [1m[35m (25.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Create (2.8ms)[0m  [1m[32mINSERT INTO "challenges" ("correct_answer_number", "created_at", "updated_at", "emotion_name", "challenge_number", "level_number") VALUES (?, ?, ?, ?, ?, ?)[0m  [["correct_answer_number", 9], ["created_at", "2021-05-20 02:41:48.444201"], ["updated_at", "2021-05-20 02:41:48.444201"], ["emotion_name", "Surprised"], ["challenge_number", 3], ["level_number", 1]]
+  [1m[35m (20.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (3.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFace Create (4.0ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "challenge_id") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353439/EmotionID%20pics/Happy/pexels-anna-shvets-3845492_bynbxs.jpg"], ["created_at", "2021-05-20 02:41:48.554512"], ["updated_at", "2021-05-20 02:41:48.554512"], ["challenge_id", 1]]
+  [1m[35m (31.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (2.1ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFace Create (6.0ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "challenge_id") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353437/EmotionID%20pics/Happy/pexels-kelvin-octa-1096147_sqlgnj.jpg"], ["created_at", "2021-05-20 02:41:48.636300"], ["updated_at", "2021-05-20 02:41:48.636300"], ["challenge_id", 2]]
+  [1m[35m (19.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.4ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFace Create (1.9ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "challenge_id") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353437/EmotionID%20pics/Happy/pexels-daniel-reche-1557182_ei7wvm.jpg"], ["created_at", "2021-05-20 02:41:48.712147"], ["updated_at", "2021-05-20 02:41:48.712147"], ["challenge_id", 1]]
+  [1m[35m (16.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.4ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mFace Create (2.0ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "challenge_id") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353434/EmotionID%20pics/Happy/pexels-henley-design-studio-1108193_eq2fmh.jpg"], ["created_at", "2021-05-20 02:41:48.751796"], ["updated_at", "2021-05-20 02:41:48.751796"], ["challenge_id", 3]]
+  [1m[35m (27.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.4ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFace Create (1.6ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "challenge_id") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618354383/EmotionID%20pics/Scared/pexels-tatiana-syrikova-3933087_b7s4n8.jpg"], ["created_at", "2021-05-20 02:41:48.800747"], ["updated_at", "2021-05-20 02:41:48.800747"], ["challenge_id", 2]]
+  [1m[35m (26.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.4ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFace Create (1.5ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "challenge_id") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353592/EmotionID%20pics/Sad/pexels-v%C3%AD%C3%A7k%C3%BD-%C3%B0e%C3%A7%C3%AB%C3%B1t-%C3%9F%C3%B6%C3%BD-1339417_tt01ym.jpg"], ["created_at", "2021-05-20 02:41:48.866546"], ["updated_at", "2021-05-20 02:41:48.866546"], ["challenge_id", 1]]
+  [1m[35m (15.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFace Create (1.6ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "challenge_id") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353589/EmotionID%20pics/Sad/pexels-anna-shvets-3905727_kmdy51.jpg"], ["created_at", "2021-05-20 02:41:48.901185"], ["updated_at", "2021-05-20 02:41:48.901185"], ["challenge_id", 2]]
+  [1m[35m (19.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mFace Create (1.8ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "challenge_id") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353589/EmotionID%20pics/Sad/pexels-anna-shvets-3771681_a1brtd.jpg"], ["created_at", "2021-05-20 02:41:48.935245"], ["updated_at", "2021-05-20 02:41:48.935245"], ["challenge_id", 3]]
+  [1m[35m (17.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mFace Create (1.4ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "challenge_id") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353651/EmotionID%20pics/Surprised/pexels-cottonbro-4715322_nqzlsx.jpg"], ["created_at", "2021-05-20 02:41:49.004550"], ["updated_at", "2021-05-20 02:41:49.004550"], ["challenge_id", 3]]
+  [1m[35m (17.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFace Load (0.3ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (1.6ms)[0m  [1m[32mINSERT INTO "games" ("username", "created_at", "updated_at", "current_challenge_id") VALUES (?, ?, ?, ?)[0m  [["username", "Ronda"], ["created_at", "2021-05-20 02:41:58.852416"], ["updated_at", "2021-05-20 02:41:58.852416"], ["current_challenge_id", 1]]
+  [1m[35m (17.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (1.3ms)[0m  [1m[32mINSERT INTO "games" ("username", "created_at", "updated_at", "current_challenge_id") VALUES (?, ?, ?, ?)[0m  [["username", "ZsaZsa"], ["created_at", "2021-05-20 02:41:58.884694"], ["updated_at", "2021-05-20 02:41:58.884694"], ["current_challenge_id", 1]]
+  [1m[35m (15.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mGame Create (1.8ms)[0m  [1m[32mINSERT INTO "games" ("username", "created_at", "updated_at", "current_challenge_id") VALUES (?, ?, ?, ?)[0m  [["username", "Lillian"], ["created_at", "2021-05-20 02:41:58.915389"], ["updated_at", "2021-05-20 02:41:58.915389"], ["current_challenge_id", 1]]
+  [1m[35m (20.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Create (1.5ms)[0m  [1m[32mINSERT INTO "challenges" ("correct_answer_number", "created_at", "updated_at", "emotion_name", "challenge_number", "level_number") VALUES (?, ?, ?, ?, ?, ?)[0m  [["correct_answer_number", 6], ["created_at", "2021-05-20 02:41:58.947699"], ["updated_at", "2021-05-20 02:41:58.947699"], ["emotion_name", "Sad"], ["challenge_number", 1], ["level_number", 1]]
+  [1m[35m (14.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Create (1.5ms)[0m  [1m[32mINSERT INTO "challenges" ("correct_answer_number", "created_at", "updated_at", "emotion_name", "challenge_number", "level_number") VALUES (?, ?, ?, ?, ?, ?)[0m  [["correct_answer_number", 2], ["created_at", "2021-05-20 02:41:58.975092"], ["updated_at", "2021-05-20 02:41:58.975092"], ["emotion_name", "Happy"], ["challenge_number", 2], ["level_number", 1]]
+  [1m[35m (15.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Create (1.6ms)[0m  [1m[32mINSERT INTO "challenges" ("correct_answer_number", "created_at", "updated_at", "emotion_name", "challenge_number", "level_number") VALUES (?, ?, ?, ?, ?, ?)[0m  [["correct_answer_number", 9], ["created_at", "2021-05-20 02:41:59.004788"], ["updated_at", "2021-05-20 02:41:59.004788"], ["emotion_name", "Surprised"], ["challenge_number", 3], ["level_number", 1]]
+  [1m[35m (16.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFace Create (3.6ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "challenge_id") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353439/EmotionID%20pics/Happy/pexels-anna-shvets-3845492_bynbxs.jpg"], ["created_at", "2021-05-20 02:41:59.056869"], ["updated_at", "2021-05-20 02:41:59.056869"], ["challenge_id", 1]]
+  [1m[35m (31.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.4ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFace Create (2.7ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "challenge_id") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353437/EmotionID%20pics/Happy/pexels-kelvin-octa-1096147_sqlgnj.jpg"], ["created_at", "2021-05-20 02:41:59.117692"], ["updated_at", "2021-05-20 02:41:59.117692"], ["challenge_id", 2]]
+  [1m[35m (23.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.4ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFace Create (2.5ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "challenge_id") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353437/EmotionID%20pics/Happy/pexels-daniel-reche-1557182_ei7wvm.jpg"], ["created_at", "2021-05-20 02:41:59.165694"], ["updated_at", "2021-05-20 02:41:59.165694"], ["challenge_id", 1]]
+  [1m[35m (18.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.5ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mFace Create (2.4ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "challenge_id") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353434/EmotionID%20pics/Happy/pexels-henley-design-studio-1108193_eq2fmh.jpg"], ["created_at", "2021-05-20 02:41:59.211956"], ["updated_at", "2021-05-20 02:41:59.211956"], ["challenge_id", 3]]
+  [1m[35m (17.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFace Create (2.4ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "challenge_id") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618354383/EmotionID%20pics/Scared/pexels-tatiana-syrikova-3933087_b7s4n8.jpg"], ["created_at", "2021-05-20 02:41:59.252703"], ["updated_at", "2021-05-20 02:41:59.252703"], ["challenge_id", 2]]
+  [1m[35m (17.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.4ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mFace Create (2.4ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "challenge_id") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618354383/EmotionID%20pics/Scared/pexels-mikhail-nilov-6945091_uv8hvy.jpg"], ["created_at", "2021-05-20 02:41:59.295858"], ["updated_at", "2021-05-20 02:41:59.295858"], ["challenge_id", 4]]
+  [1m[35m (25.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.7ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mFace Create (2.1ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "challenge_id") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618354383/EmotionID%20pics/Scared/pexels-andrea-piacquadio-3978572_xfz03v.jpg"], ["created_at", "2021-05-20 02:41:59.371600"], ["updated_at", "2021-05-20 02:41:59.371600"], ["challenge_id", 5]]
+  [1m[35m (15.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFace Create (2.0ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "challenge_id") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353592/EmotionID%20pics/Sad/pexels-v%C3%AD%C3%A7k%C3%BD-%C3%B0e%C3%A7%C3%AB%C3%B1t-%C3%9F%C3%B6%C3%BD-1339417_tt01ym.jpg"], ["created_at", "2021-05-20 02:41:59.408584"], ["updated_at", "2021-05-20 02:41:59.408584"], ["challenge_id", 1]]
+  [1m[35m (15.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFace Create (2.2ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "challenge_id") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353589/EmotionID%20pics/Sad/pexels-anna-shvets-3905727_kmdy51.jpg"], ["created_at", "2021-05-20 02:41:59.442401"], ["updated_at", "2021-05-20 02:41:59.442401"], ["challenge_id", 2]]
+  [1m[35m (15.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.4ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mFace Create (1.6ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "challenge_id") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353589/EmotionID%20pics/Sad/pexels-anna-shvets-3771681_a1brtd.jpg"], ["created_at", "2021-05-20 02:41:59.479177"], ["updated_at", "2021-05-20 02:41:59.479177"], ["challenge_id", 3]]
+  [1m[35m (42.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mFace Create (1.6ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "challenge_id") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353588/EmotionID%20pics/Sad/pexels-cottonbro-4100480_n3xskt.jpg"], ["created_at", "2021-05-20 02:41:59.548529"], ["updated_at", "2021-05-20 02:41:59.548529"], ["challenge_id", 4]]
+  [1m[35m (27.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.7ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mFace Create (1.6ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "challenge_id") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353651/EmotionID%20pics/Surprised/pexels-cottonbro-4715322_nqzlsx.jpg"], ["created_at", "2021-05-20 02:41:59.595088"], ["updated_at", "2021-05-20 02:41:59.595088"], ["challenge_id", 4]]
+  [1m[35m (21.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mFace Create (2.4ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "challenge_id") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353651/EmotionID%20pics/Surprised/pexels-tatiana-syrikova-3933250_wdh0bz.jpg"], ["created_at", "2021-05-20 02:41:59.660515"], ["updated_at", "2021-05-20 02:41:59.660515"], ["challenge_id", 5]]
+  [1m[35m (18.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.4ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mFace Create (4.1ms)[0m  [1m[32mINSERT INTO "faces" ("image_url", "created_at", "updated_at", "challenge_id") VALUES (?, ?, ?, ?)[0m  [["image_url", "https://res.cloudinary.com/zsazsa6/image/upload/v1618353651/EmotionID%20pics/Surprised/pexels-cottonbro-4715322_nqzlsx.jpg"], ["created_at", "2021-05-20 02:41:59.706647"], ["updated_at", "2021-05-20 02:41:59.706647"], ["challenge_id", 3]]
+  [1m[35m (22.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mChallenge Load (0.4ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFace Load (0.4ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+Started GET "/games" for ::1 at 2021-05-19 21:42:25 -0500
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GamesController#index as */*
+  [1m[36mGame Load (6.2ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:6:in `index'
+Completed 200 OK in 149ms (Views: 94.1ms | ActiveRecord: 10.5ms | Allocations: 7758)
+
+
+Started GET "/challenges/1" for ::1 at 2021-05-19 21:42:32 -0500
+Processing by ChallengesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mChallenge Load (0.8ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/challenges_controller.rb:12:in `show'
+  [1m[36mFace Load (0.5ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."challenge_id" = ?[0m  [["challenge_id", 1]]
+  ↳ app/controllers/challenges_controller.rb:13:in `show'
+Completed 200 OK in 178ms (Views: 64.7ms | ActiveRecord: 4.4ms | Allocations: 14217)
+
+
+Started POST "/games/Ronda/challenge_answers" for ::1 at 2021-05-19 21:42:38 -0500
+Processing by ChallengeAnswersController#create as JSON
+  Parameters: {"challenge_answer"=>{"challenge_id"=>1, "face_id"=>"6"}, "game_username"=>"Ronda"}
+  [1m[36mGame Load (1.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Ronda"], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:5:in `create'
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallenge Load (0.4ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mFace Load (0.6ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallengeAnswer Create (4.9ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("created_at", "updated_at", "challenge_id", "face_id", "game_id", "correct") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2021-05-20 02:42:38.686200"], ["updated_at", "2021-05-20 02:42:38.686200"], ["challenge_id", 1], ["face_id", 6], ["game_id", 1], ["correct", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mGame Update All (1.0ms)[0m  [1m[33mUPDATE "games" SET "challenge_answers_count" = COALESCE("challenge_answers_count", 0) + ? WHERE "games"."id" = ?[0m  [["challenge_answers_count", 1], ["id", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (26.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mChallenge Load (0.4ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mGame Update (2.1ms)[0m  [1m[33mUPDATE "games" SET "current_challenge_id" = ?, "updated_at" = ? WHERE "games"."id" = ?[0m  [["current_challenge_id", 2], ["updated_at", "2021-05-20 02:42:38.753078"], ["id", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[35m (27.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+Completed 200 OK in 218ms (Views: 1.6ms | ActiveRecord: 67.3ms | Allocations: 16381)
+
+
+Started GET "/games/Ronda" for ::1 at 2021-05-19 21:44:07 -0500
+Processing by GamesController#show as */*
+  Parameters: {"username"=>"Ronda"}
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Ronda"], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:11:in `show'
+Completed 200 OK in 5ms (Views: 0.9ms | ActiveRecord: 0.3ms | Allocations: 756)
+
+
+Started GET "/challenges/2" for ::1 at 2021-05-19 21:44:09 -0500
+Processing by ChallengesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/challenges_controller.rb:12:in `show'
+  [1m[36mFace Load (0.3ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."challenge_id" = ?[0m  [["challenge_id", 2]]
+  ↳ app/controllers/challenges_controller.rb:13:in `show'
+Completed 200 OK in 10ms (Views: 7.2ms | ActiveRecord: 0.6ms | Allocations: 2507)
+
+
+Started POST "/games/Ronda/challenge_answers" for ::1 at 2021-05-19 21:44:15 -0500
+Processing by ChallengeAnswersController#create as JSON
+  Parameters: {"challenge_answer"=>{"challenge_id"=>2, "face_id"=>"2"}, "game_username"=>"Ronda"}
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Ronda"], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:5:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mFace Load (0.2ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallengeAnswer Create (2.3ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("created_at", "updated_at", "challenge_id", "face_id", "game_id", "correct") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2021-05-20 02:44:15.455748"], ["updated_at", "2021-05-20 02:44:15.455748"], ["challenge_id", 2], ["face_id", 2], ["game_id", 1], ["correct", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mGame Update All (0.4ms)[0m  [1m[33mUPDATE "games" SET "challenge_answers_count" = COALESCE("challenge_answers_count", 0) + ? WHERE "games"."id" = ?[0m  [["challenge_answers_count", 1], ["id", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (27.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mGame Update (34.6ms)[0m  [1m[33mUPDATE "games" SET "current_challenge_id" = ?, "updated_at" = ? WHERE "games"."id" = ?[0m  [["current_challenge_id", 3], ["updated_at", "2021-05-20 02:44:15.536737"], ["id", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[35m (19.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+Completed 200 OK in 182ms (Views: 1.5ms | ActiveRecord: 85.7ms | Allocations: 11871)
+
+
+Started GET "/games/Ronda" for ::1 at 2021-05-19 21:47:08 -0500
+Processing by GamesController#show as */*
+  Parameters: {"username"=>"Ronda"}
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Ronda"], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:11:in `show'
+Completed 200 OK in 7ms (Views: 1.2ms | ActiveRecord: 0.3ms | Allocations: 740)
+
+
+Started GET "/challenges/3" for ::1 at 2021-05-19 21:47:12 -0500
+Processing by ChallengesController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/challenges_controller.rb:12:in `show'
+  [1m[36mFace Load (0.4ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."challenge_id" = ?[0m  [["challenge_id", 3]]
+  ↳ app/controllers/challenges_controller.rb:13:in `show'
+Completed 200 OK in 22ms (Views: 18.6ms | ActiveRecord: 0.7ms | Allocations: 2491)
+
+
+Started POST "/games/Ronda/challenge_answers" for ::1 at 2021-05-19 21:47:22 -0500
+Processing by ChallengeAnswersController#create as JSON
+  Parameters: {"challenge_answer"=>{"challenge_id"=>3, "face_id"=>"9"}, "game_username"=>"Ronda"}
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Ronda"], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:5:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mFace Load (0.2ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallengeAnswer Create (2.6ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("created_at", "updated_at", "challenge_id", "face_id", "game_id", "correct") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2021-05-20 02:47:22.228891"], ["updated_at", "2021-05-20 02:47:22.228891"], ["challenge_id", 3], ["face_id", 9], ["game_id", 1], ["correct", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mGame Update All (0.6ms)[0m  [1m[33mUPDATE "games" SET "challenge_answers_count" = COALESCE("challenge_answers_count", 0) + ? WHERE "games"."id" = ?[0m  [["challenge_answers_count", 1], ["id", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (20.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mChallenge Load (0.4ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mGame Update (1.6ms)[0m  [1m[33mUPDATE "games" SET "current_challenge_id" = ?, "updated_at" = ? WHERE "games"."id" = ?[0m  [["current_challenge_id", 4], ["updated_at", "2021-05-20 02:47:22.285697"], ["id", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[35m (17.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+Completed 200 OK in 110ms (Views: 1.5ms | ActiveRecord: 44.9ms | Allocations: 10824)
+
+
+Started GET "/games" for ::1 at 2021-05-19 21:52:54 -0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GamesController#index as */*
+  [1m[36mGame Load (1.0ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:6:in `index'
+Completed 200 OK in 9ms (Views: 5.3ms | ActiveRecord: 1.0ms | Allocations: 1233)
+
+
+Started GET "/challenges/1" for ::1 at 2021-05-19 21:53:08 -0500
+Processing by ChallengesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mChallenge Load (0.5ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/challenges_controller.rb:12:in `show'
+  [1m[36mFace Load (1.0ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."challenge_id" = ?[0m  [["challenge_id", 1]]
+  ↳ app/controllers/challenges_controller.rb:13:in `show'
+Completed 200 OK in 32ms (Views: 9.2ms | ActiveRecord: 1.5ms | Allocations: 2525)
+
+
+Started POST "/games/ZsaZsa/challenge_answers" for ::1 at 2021-05-19 21:53:32 -0500
+Processing by ChallengeAnswersController#create as JSON
+  Parameters: {"challenge_answer"=>{"challenge_id"=>1, "face_id"=>"6"}, "game_username"=>"ZsaZsa"}
+  [1m[36mGame Load (2.1ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "ZsaZsa"], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:5:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallenge Load (0.4ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mFace Load (0.3ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallengeAnswer Create (35.4ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("created_at", "updated_at", "challenge_id", "face_id", "game_id", "correct") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2021-05-20 02:53:32.623617"], ["updated_at", "2021-05-20 02:53:32.623617"], ["challenge_id", 1], ["face_id", 6], ["game_id", 2], ["correct", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mGame Update All (0.8ms)[0m  [1m[33mUPDATE "games" SET "challenge_answers_count" = COALESCE("challenge_answers_count", 0) + ? WHERE "games"."id" = ?[0m  [["challenge_answers_count", 1], ["id", 2]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (19.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mGame Update (2.5ms)[0m  [1m[33mUPDATE "games" SET "current_challenge_id" = ?, "updated_at" = ? WHERE "games"."id" = ?[0m  [["current_challenge_id", 2], ["updated_at", "2021-05-20 02:53:32.724628"], ["id", 2]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[35m (32.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+Completed 200 OK in 211ms (Views: 1.2ms | ActiveRecord: 93.2ms | Allocations: 11963)
+
+
+Started GET "/games" for ::1 at 2021-05-19 22:07:44 -0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GamesController#index as */*
+  [1m[36mGame Load (0.4ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/games_controller.rb:6:in `index'
+Completed 200 OK in 6ms (Views: 5.4ms | ActiveRecord: 0.4ms | Allocations: 1232)
+
+
+Started GET "/challenges/1" for ::1 at 2021-05-19 22:07:49 -0500
+Processing by ChallengesController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mChallenge Load (0.6ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/challenges_controller.rb:12:in `show'
+  [1m[36mFace Load (0.9ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."challenge_id" = ?[0m  [["challenge_id", 1]]
+  ↳ app/controllers/challenges_controller.rb:13:in `show'
+Completed 200 OK in 34ms (Views: 25.0ms | ActiveRecord: 1.5ms | Allocations: 2525)
+
+
+Started POST "/games/Lillian/challenge_answers" for ::1 at 2021-05-19 22:07:53 -0500
+Processing by ChallengeAnswersController#create as JSON
+  Parameters: {"challenge_answer"=>{"challenge_id"=>1, "face_id"=>"3"}, "game_username"=>"Lillian"}
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Lillian"], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:5:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallenge Load (0.8ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mFace Load (3.5ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallengeAnswer Create (6.1ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("created_at", "updated_at", "challenge_id", "face_id", "game_id", "correct") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2021-05-20 03:07:53.809730"], ["updated_at", "2021-05-20 03:07:53.809730"], ["challenge_id", 1], ["face_id", 3], ["game_id", 3], ["correct", 0]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mGame Update All (2.4ms)[0m  [1m[33mUPDATE "games" SET "challenge_answers_count" = COALESCE("challenge_answers_count", 0) + ? WHERE "games"."id" = ?[0m  [["challenge_answers_count", 1], ["id", 3]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (67.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mChallenge Load (1.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mGame Update (3.0ms)[0m  [1m[33mUPDATE "games" SET "current_challenge_id" = ?, "updated_at" = ? WHERE "games"."id" = ?[0m  [["current_challenge_id", 2], ["updated_at", "2021-05-20 03:07:53.965448"], ["id", 3]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[35m (25.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+Completed 200 OK in 332ms (Views: 1.3ms | ActiveRecord: 110.6ms | Allocations: 14719)
+
+
+Started GET "/games/Lillian" for ::1 at 2021-05-19 22:15:37 -0500
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by GamesController#show as */*
+  Parameters: {"username"=>"Lillian"}
+  [1m[36mGame Load (0.9ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Lillian"], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:11:in `show'
+Completed 200 OK in 7ms (Views: 1.0ms | ActiveRecord: 0.9ms | Allocations: 758)
+
+
+Started GET "/challenges/2" for ::1 at 2021-05-19 22:15:40 -0500
+Processing by ChallengesController#show as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mChallenge Load (0.5ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/challenges_controller.rb:12:in `show'
+  [1m[36mFace Load (0.6ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."challenge_id" = ?[0m  [["challenge_id", 2]]
+  ↳ app/controllers/challenges_controller.rb:13:in `show'
+Completed 200 OK in 16ms (Views: 12.8ms | ActiveRecord: 1.1ms | Allocations: 2525)
+
+
+Started POST "/games/Lillian/challenge_answers" for ::1 at 2021-05-19 22:15:46 -0500
+Processing by ChallengeAnswersController#create as JSON
+  Parameters: {"challenge_answer"=>{"challenge_id"=>2, "face_id"=>"7"}, "game_username"=>"Lillian"}
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Lillian"], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:5:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mFace Load (0.3ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallengeAnswer Create (2.3ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("created_at", "updated_at", "challenge_id", "face_id", "game_id", "correct") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2021-05-20 03:15:46.678326"], ["updated_at", "2021-05-20 03:15:46.678326"], ["challenge_id", 2], ["face_id", 7], ["game_id", 3], ["correct", 0]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mGame Update All (0.5ms)[0m  [1m[33mUPDATE "games" SET "challenge_answers_count" = COALESCE("challenge_answers_count", 0) + ? WHERE "games"."id" = ?[0m  [["challenge_answers_count", 1], ["id", 3]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (17.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mChallenge Load (1.5ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mGame Update (2.0ms)[0m  [1m[33mUPDATE "games" SET "current_challenge_id" = ?, "updated_at" = ? WHERE "games"."id" = ?[0m  [["current_challenge_id", 3], ["updated_at", "2021-05-20 03:15:46.730981"], ["id", 3]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[35m (16.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+Completed 200 OK in 99ms (Views: 1.4ms | ActiveRecord: 41.6ms | Allocations: 13385)
+
+
+Started GET "/games/Lillian" for ::1 at 2021-05-19 22:17:10 -0500
+Processing by GamesController#show as */*
+  Parameters: {"username"=>"Lillian"}
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Lillian"], ["LIMIT", 1]]
+  ↳ app/controllers/games_controller.rb:11:in `show'
+Completed 200 OK in 6ms (Views: 1.0ms | ActiveRecord: 0.3ms | Allocations: 740)
+
+
+Started GET "/challenges/3" for ::1 at 2021-05-19 22:17:13 -0500
+Processing by ChallengesController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/challenges_controller.rb:12:in `show'
+  [1m[36mFace Load (0.3ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."challenge_id" = ?[0m  [["challenge_id", 3]]
+  ↳ app/controllers/challenges_controller.rb:13:in `show'
+Completed 200 OK in 12ms (Views: 5.8ms | ActiveRecord: 0.6ms | Allocations: 2491)
+
+
+Started POST "/games/Lillian/challenge_answers" for ::1 at 2021-05-19 22:17:21 -0500
+Processing by ChallengeAnswersController#create as JSON
+  Parameters: {"challenge_answer"=>{"challenge_id"=>3, "face_id"=>"9"}, "game_username"=>"Lillian"}
+  [1m[36mGame Load (0.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."username" = ? LIMIT ?[0m  [["username", "Lillian"], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:5:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallenge Load (0.2ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mFace Load (0.2ms)[0m  [1m[34mSELECT "faces".* FROM "faces" WHERE "faces"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mChallengeAnswer Create (1.6ms)[0m  [1m[32mINSERT INTO "challenge_answers" ("created_at", "updated_at", "challenge_id", "face_id", "game_id", "correct") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2021-05-20 03:17:21.945006"], ["updated_at", "2021-05-20 03:17:21.945006"], ["challenge_id", 3], ["face_id", 9], ["game_id", 3], ["correct", 1]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[36mGame Update All (0.4ms)[0m  [1m[33mUPDATE "games" SET "challenge_answers_count" = COALESCE("challenge_answers_count", 0) + ? WHERE "games"."id" = ?[0m  [["challenge_answers_count", 1], ["id", 3]]
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (16.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/challenge_answers_controller.rb:7:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mChallenge Load (0.3ms)[0m  [1m[34mSELECT "challenges".* FROM "challenges" WHERE "challenges"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[36mGame Update (1.4ms)[0m  [1m[33mUPDATE "games" SET "current_challenge_id" = ?, "updated_at" = ? WHERE "games"."id" = ?[0m  [["current_challenge_id", 4], ["updated_at", "2021-05-20 03:17:21.989336"], ["id", 3]]
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+  [1m[35m (19.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/models/challenge_answer.rb:21:in `advance_challenge'
+Completed 200 OK in 99ms (Views: 3.0ms | ActiveRecord: 40.1ms | Allocations: 13332)
+
+

@@ -17,8 +17,8 @@ class ChallengeAnswer < ApplicationRecord
     end
 
     def advance_challenge
-        challenge_id = challenge.id += 1
-        game.current_challenge_id = game.current_challenge.id += 1
+        game.current_challenge_id += 1
+        game.save
     end
     
 end
