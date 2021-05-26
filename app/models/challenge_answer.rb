@@ -21,4 +21,5 @@ class ChallengeAnswer < ApplicationRecord
         game.save
     end
     
+    
 end
