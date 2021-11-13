@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_14_021456) do
+ActiveRecord::Schema.define(version: 2021_11_13_202338) do
 
   create_table "challenge_answers", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2021_05_14_021456) do
     t.string "emotion_name"
     t.integer "challenge_number"
     t.integer "level_number"
+    t.text "emotion_pic"
   end
 
   create_table "faces", force: :cascade do |t|
