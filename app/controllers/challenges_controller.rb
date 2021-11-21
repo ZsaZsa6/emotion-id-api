@@ -15,6 +15,6 @@ class ChallengesController < ApplicationController
     end
     private
     def challenge_params
-        params.require(:challenge).permit(:emotion_name, :correct_answer_number, :challenge_number, :level_number)
+        params.require(:challenge).permit(:emotion_name, :emotion_pic, :correct_answer_number, :challenge_number, :level_number)
     end
 end

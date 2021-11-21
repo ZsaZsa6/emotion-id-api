@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 games = Game.create([{username: 'Ronda', current_challenge_id: 1}, {username: 'ZsaZsa', current_challenge_id: 1}, {username: 'Lillian', current_challenge_id: 1}])
-challenges = Challenge.create([{emotion_name: 'Sad', correct_answer_number: 6, challenge_number: 1, level_number: 1}, {emotion_name: 'Happy', correct_answer_number: 2, challenge_number: 2, level_number: 1}, {emotion_name: 'Surprised', correct_answer_number: 9, challenge_number: 3, level_number: 1}])
+challenges = Challenge.create([{emotion_name: 'Sad', emotion_pic: , correct_answer_number: 6, challenge_number: 1, level_number: 1}, {emotion_name: 'Happy', correct_answer_number: 2, challenge_number: 2, level_number: 1}, {emotion_name: 'Surprised', correct_answer_number: 9, challenge_number: 3, level_number: 1}])
 
 
 happy_faces = Face.create([{image_url: "https://res.cloudinary.com/zsazsa6/image/upload/v1618353439/EmotionID%20pics/Happy/pexels-anna-shvets-3845492_bynbxs.jpg", challenge_id: 1}, {image_url: "https://res.cloudinary.com/zsazsa6/image/upload/v1618353437/EmotionID%20pics/Happy/pexels-kelvin-octa-1096147_sqlgnj.jpg", challenge_id: 2}, {image_url: "https://res.cloudinary.com/zsazsa6/image/upload/v1618353437/EmotionID%20pics/Happy/pexels-daniel-reche-1557182_ei7wvm.jpg", challenge_id: 1},{image_url: "https://res.cloudinary.com/zsazsa6/image/upload/v1618353434/EmotionID%20pics/Happy/pexels-henley-design-studio-1108193_eq2fmh.jpg", challenge_id: 3}])
